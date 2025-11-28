@@ -1,1089 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commands - Swarve Discord Bot</title>
+    <!-- Updated to English with Swarve Music branding -->
+    <title>Commands - Swarve Music</title>
+    <meta name="description" content="Complete list of Swarve Music commands for Discord.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="Swarve.png" type="image/png">
-    <meta name="title" content="Swarve Commands - Discord Bot Commands List">
-    <meta name="description"
-        content="Explore all commands available in Swarve, the Discord bot, including moderation, fun, utility, and economy commands.">
-    <meta name="keywords" content="Swarve, Discord bot, commands, moderation, fun, utility, economy">
-    <meta name="robots" content="index, follow">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --background: #09090b;
-            --background-secondary: #0f0f12;
-            --foreground: #fafafa;
-            --card: #141417;
-            --card-hover: #1a1a1f;
-            --muted: #71717a;
-            --accent: #5865F2;
-            --accent-hover: #4752c4;
-            --border: #27272a;
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --info: #3b82f6;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--background);
-            color: var(--foreground);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(9, 9, 11, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--foreground);
-        }
-
-        .logo svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--foreground);
-        }
-
-        .nav-cta {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 0.6rem 1.25rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-hover);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--foreground);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--card);
-        }
-
-        /* Main Layout */
-        .layout {
-            display: flex;
-            padding-top: 65px;
-            min-height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            background: var(--background-secondary);
-            border-right: 1px solid var(--border);
-            padding: 2rem 0;
-            position: fixed;
-            top: 65px;
-            left: 0;
-            bottom: 0;
-            overflow-y: auto;
-        }
-
-        .sidebar-header {
-            padding: 0 1.5rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 1rem;
-        }
-
-        .sidebar-header h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-header p {
-            font-size: 0.875rem;
-            color: var(--muted);
-        }
-
-        .category-list {
-            list-style: none;
-        }
-
-        .category-item {
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: var(--muted);
-            font-weight: 500;
-            font-size: 0.95rem;
-            border-left: 3px solid transparent;
-        }
-
-        .category-item:hover {
-            background: var(--card);
-            color: var(--foreground);
-        }
-
-        .category-item.active {
-            background: var(--card);
-            color: var(--foreground);
-            border-left-color: var(--accent);
-        }
-
-        .category-item svg {
-            width: 20px;
-            height: 20px;
-            opacity: 0.7;
-        }
-
-        .category-item.active svg {
-            opacity: 1;
-            color: var(--accent);
-        }
-
-        .category-count {
-            margin-left: auto;
-            background: var(--border);
-            padding: 0.125rem 0.5rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            margin-left: 280px;
-            padding: 2rem 3rem;
-        }
-
-        /* Search Bar */
-        .search-container {
-            margin-bottom: 2rem;
-        }
-
-        .search-bar {
-            position: relative;
-            max-width: 500px;
-        }
-
-        .search-bar svg {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            color: var(--muted);
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 0.875rem 1rem 0.875rem 3rem;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--foreground);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: all 0.2s ease;
-        }
-
-        .search-bar input::placeholder {
-            color: var(--muted);
-        }
-
-        .search-bar input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.15);
-        }
-
-        /* Commands Header */
-        .commands-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .commands-header h1 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .commands-header h1 svg {
-            width: 28px;
-            height: 28px;
-            color: var(--accent);
-        }
-
-        .command-count {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        /* Commands Grid */
-        .commands-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .command-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.2s ease;
-        }
-
-        .command-card:hover {
-            border-color: rgba(88, 101, 242, 0.5);
-        }
-
-        .command-card.expanded {
-            border-color: var(--accent);
-        }
-
-        .command-header {
-            padding: 1rem 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            cursor: pointer;
-        }
-
-        .command-name {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-            font-size: 0.95rem;
-        }
-
-        .command-prefix {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .command-title {
-            color: var(--foreground);
-            font-weight: 600;
-        }
-
-        .command-desc {
-            color: var(--muted);
-            font-size: 0.875rem;
-            flex: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .command-tags {
-            display: flex;
-            gap: 0.5rem;
-            margin-left: auto;
-        }
-
-        .command-tag {
-            padding: 0.25rem 0.625rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.025em;
-        }
-
-        .tag-mod {
-            background: rgba(239, 68, 68, 0.15);
-            color: #f87171;
-        }
-
-        .tag-fun {
-            background: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
-        }
-
-        .tag-eco {
-            background: rgba(34, 197, 94, 0.15);
-            color: #33ff00;
-        }
-
-        .tag-util {
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-        }
-
-        .tag-music {
-            background: rgba(168, 85, 247, 0.15);
-            color: #c084fc;
-        }
-
-        .tag-level {
-            background: rgba(245, 158, 11, 0.15);
-            color: #fbbf24;
-        }
-
-        .tag-owner {
-            background: rgba(236, 72, 153, 0.15);
-            color: #f31313;
-        }
-
-        .tag-config {
-            background: rgba(236, 72, 153, 0.15);
-            color: #6d696b;
-        }
-
-        .expand-icon {
-            width: 20px;
-            height: 20px;
-            color: var(--muted);
-            transition: transform 0.2s ease;
-        }
-
-        .command-card.expanded .expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .command-details {
-            display: none;
-            padding: 0 1.25rem 1.25rem;
-            border-top: 1px solid var(--border);
-            margin-top: 0;
-        }
-
-        .command-card.expanded .command-details {
-            display: block;
-        }
-
-        .detail-section {
-            margin-top: 1rem;
-        }
-
-        .detail-section h4 {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-
-        .usage-box {
-            background: var(--background);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-            font-size: 0.875rem;
-            color: var(--foreground);
-        }
-
-        .usage-box .param {
-            color: var(--accent);
-        }
-
-        .usage-box .optional {
-            color: var(--muted);
-        }
-
-        .permission-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            padding: 0.375rem 0.75rem;
-            background: var(--background);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 0.8rem;
-            color: var(--muted);
-        }
-
-        .permission-badge svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .examples-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .example-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.625rem 0.875rem;
-            background: var(--background);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-            font-size: 0.85rem;
-        }
-
-        .example-item span:first-child {
-            color: var(--accent);
-        }
-
-        .example-item span:last-child {
-            color: var(--muted);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--foreground);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-sidebar-btn {
-            display: none;
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            width: 56px;
-            height: 56px;
-            background: var(--accent);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            z-index: 99;
-            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
-        }
-
-        .mobile-sidebar-btn svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* No Results */
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--muted);
-        }
-
-        .no-results svg {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        .no-results h3 {
-            font-size: 1.25rem;
-            color: var(--foreground);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-                z-index: 98;
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 1.5rem;
-            }
-
-            .mobile-sidebar-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-            .nav-links,
-            .nav-cta {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .command-header {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-
-            .command-desc {
-                order: 3;
-                flex-basis: 100%;
-                white-space: normal;
-                margin-top: 0.25rem;
-            }
-
-            .command-tags {
-                margin-left: 0;
-            }
-        }
-
-        /* Overlay */
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 97;
-        }
-
-        .sidebar-overlay.open {
-            display: block;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav>
-        <a href="index.html" class="logo">
-            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="32" height="32" rx="8" fill="#5865F2" />
-                <path d="M10 12L16 8L22 12V20L16 24L10 20V12Z" fill="white" />
-            </svg>
-            Swarve
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="commands.html" class="active">Commands</a></li>
-            <li><a href="/team">Team</a></li>
-            <li><a href="/docs">Documentation</a></li>
-            <li><a href="https://discord.gg/NnDvs4umXE">Support</a></li>
-        </ul>
-        <div class="nav-cta">
-            <a href="https://discord.com/oauth2/authorize?client_id=1442642756496265356&permissions=573386723373015&integration_type=0&scope=applications.commands+bot"
-                class="btn btn-primary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 5v14M5 12h14" />
-                </svg>
-                Add to Discord
-            </a>
-        </div>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
-    </nav>
-
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-
-    <div class="layout">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h2>Commands</h2>
-                <p>Browse all 55+ commands</p>
-            </div>
-            <ul class="category-list" id="categoryList">
-                <li class="category-item active" data-category="all">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                    All Commands
-                    <span class="category-count">87</span>
-                </li>
-                <li class="category-item" data-category="moderation">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    Moderation
-                    <span class="category-count">32</span>
-                </li>
-                <li class="category-item" data-category="fun">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
-                    </svg>
-                    Fun
-                    <span class="category-count">12</span>
-                </li>
-                <li class="category-item" data-category="config">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-                        <path
-                            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
-                    </svg>
-                    Config
-                    <span class="category-count">1</span>
-                </li>
-                <!--  <li class="category-item" data-category="economy">
-                    <svg fill="#8f8a8a" width="256px" height="256px" viewBox="0 0 32.00 32.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#8f8a8a" stroke-width="0.00032"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>dollar</title> <path d="M0 25v-18h32v18h-32zM2 8.938v14.062h28v-14.062h-28zM21 16c0-3.313-2.238-6-5-6h13v12h-13c2.762 0 5-2.687 5-6zM25 18c0.828 0 1.5-0.896 1.5-2s-0.672-2-1.5-2-1.5 0.896-1.5 2 0.672 2 1.5 2zM18.118 13.478c-0.015 0.055-0.036 0.094-0.062 0.119-0.027 0.025-0.063 0.037-0.109 0.037s-0.118-0.028-0.219-0.086c-0.1-0.059-0.223-0.121-0.368-0.189-0.146-0.068-0.314-0.13-0.506-0.187s-0.402-0.083-0.631-0.083c-0.18 0-0.336 0.021-0.469 0.065s-0.245 0.104-0.334 0.18c-0.090 0.077-0.156 0.17-0.2 0.277s-0.065 0.222-0.065 0.342c0 0.18 0.049 0.335 0.147 0.466s0.229 0.248 0.394 0.35c0.165 0.103 0.351 0.198 0.56 0.287 0.207 0.090 0.42 0.185 0.637 0.284 0.217 0.101 0.429 0.214 0.637 0.341s0.395 0.279 0.557 0.456 0.293 0.385 0.394 0.624c0.1 0.24 0.149 0.521 0.149 0.847 0 0.425-0.078 0.797-0.236 1.118s-0.373 0.588-0.645 0.802c-0.271 0.215-0.587 0.376-0.949 0.484-0.046 0.014-0.096 0.020-0.143 0.031v1.092h-0.983v-0.963c-0.013 0-0.024 0.002-0.036 0.002-0.279 0-0.539-0.022-0.778-0.067s-0.451-0.101-0.634-0.164c-0.184-0.064-0.336-0.131-0.459-0.201s-0.211-0.132-0.265-0.186c-0.054-0.054-0.093-0.132-0.116-0.234-0.023-0.103-0.035-0.249-0.035-0.441 0-0.129 0.004-0.237 0.013-0.325s0.022-0.158 0.041-0.213 0.043-0.093 0.075-0.116c0.031-0.022 0.067-0.034 0.109-0.034 0.058 0 0.14 0.034 0.247 0.103s0.243 0.145 0.409 0.228c0.167 0.084 0.365 0.159 0.597 0.229 0.231 0.068 0.499 0.103 0.803 0.103 0.2 0 0.379-0.024 0.537-0.072s0.293-0.115 0.403-0.203 0.194-0.196 0.253-0.325c0.059-0.13 0.088-0.273 0.088-0.433 0-0.183-0.051-0.34-0.15-0.472-0.1-0.131-0.23-0.247-0.391-0.35-0.16-0.102-0.342-0.197-0.546-0.287s-0.414-0.185-0.631-0.284c-0.216-0.1-0.427-0.213-0.631-0.341s-0.386-0.278-0.546-0.455c-0.16-0.177-0.291-0.387-0.39-0.628s-0.15-0.531-0.15-0.868c0-0.388 0.072-0.728 0.215-1.021s0.337-0.537 0.581-0.73 0.531-0.338 0.862-0.434c0.17-0.050 0.346-0.085 0.526-0.109v-1.034h0.983v1.034c0.039 0.005 0.078 0.003 0.117 0.009 0.191 0.029 0.371 0.068 0.537 0.118 0.167 0.049 0.314 0.104 0.444 0.167 0.129 0.062 0.214 0.113 0.256 0.155s0.069 0.076 0.085 0.105c0.014 0.029 0.026 0.068 0.037 0.116s0.018 0.108 0.021 0.182c0.004 0.072 0.006 0.163 0.006 0.271 0 0.121-0.003 0.224-0.009 0.308-0.009 0.079-0.019 0.149-0.034 0.203zM11 16c0 3.313 2.238 6 5 6h-13v-12h13c-2.762 0-5 2.687-5 6zM7 14c-0.829 0-1.5 0.896-1.5 2s0.671 2 1.5 2c0.828 0 1.5-0.896 1.5-2s-0.672-2-1.5-2z"></path> </g></svg>
-                    Economy
-                    <span class="category-count">10</span>
-                </li> -->
-                <li class="category-item" data-category="utility">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path
-                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-                    </svg>
-                    Utility
-                    <span class="category-count">26</span>
-                </li>
-
-                <li class="category-item" data-category="economy">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="6" width="18" height="12" rx="2" ry="2"/>
-    <circle cx="12" cy="12" r="3"/>
-    <line x1="12" y1="9" x2="12" y2="15"/>
-    <line x1="9" y1="12" x2="15" y2="12"/>
-</svg>
-                    Economy
-                    <span class="category-count">11</span>
-                </li>
+    <div class="particles" id="particles"></div>
+    
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">
                 
-                <li class="category-item" data-category="owner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M5 10l3-5 5 5 5-5 3 5H5z" />
-                        <path d="M12 15h0" />
-                        <path d="M21 10H3" />
-                        <path d="M2 17h20" />
-                        <path d="M7 21h10" />
-                    </svg>
-                    Owner
-                    <span class="category-count">1</span>
-                </li>
+                <span>Swarve Music</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/commands" class="active">Commands</a></li>
+                <li><a href="/docs">Documentation</a></li>
+                <li><a href="/status">Status</a></li>
+                <li><a href="/team">Team</a></li>
             </ul>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <div class="search-container">
-                <div class="search-bar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="M21 21l-4.35-4.35" />
+            <div class="nav-buttons">
+                <a href="https://discord.com/invite/NnDvs4umXE" class="btn btn-ghost" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+                    Support
+                </a>
+                <a href="https://discord.com/oauth2/authorize?client_id=1443714462942105692&permissions=321888671960896&integration_type=0&scope=applications.commands+bot" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <path d="M12 5v14M5 12h14"/>
                     </svg>
-                    <input type="text" id="searchInput" placeholder="Search commands..." autocomplete="off">
+                    Invite Bot
+                </a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Commands</h1>
+            <p>Complete list of all commands available in Swarve Music</p>
+        </div>
+    </section>
+
+    <section class="commands-search">
+        <div class="container">
+            <div class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" id="commandSearch" placeholder="Search commands...">
+            </div>
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">All</button>
+                <button class="category-tab" data-category="music">Music</button>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="commands-section">
+        <div class="container">
+            <div class="commands-full-grid" id="commandsGrid">
+                <!-- Music Commands -->
+                <div class="command-full-card" data-category="music">
+                    <div class="command-header">
+                        <code>/play</code>
+                        <span class="command-category">Music</span>
+                    </div>
+                    <p class="command-description">Play a song or playlist from YouTube, Spotify, SoundCloud and more.</p>
+                    <div class="command-usage">
+                        <span class="usage-label">Usage:</span>
+                        <code>/play [song or URL]</code>
+                    </div>
+                    <div class="command-example">
+                        <span class="example-label">Example:</span>
+                        <code>/play Blinding Lights</code>
+                    </div>
+                </div>
+
+                <div class="command-full-card" data-category="music">
+                    <div class="command-header">
+                        <code>/stop</code>
+                        <span class="command-category">Music</span>
+                    </div>
+                    <p class="command-description">Pause the current playback.</p>
+                    <div class="command-usage">
+                        <span class="usage-label">Usage:</span>
+                        <code>/stop</code>
+                    </div>
                 </div>
             </div>
-
-            <div class="commands-header">
-                <h1 id="categoryTitle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                    All Commands
-                </h1>
-                <span class="command-count" id="commandCount">48 commands</span>
-            </div>
-
-            <div class="commands-grid" id="commandsGrid">
-                <!-- Commands will be injected by JavaScript -->
-            </div>
-
-            <div class="no-results" id="noResults" style="display: none;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="M21 21l-4.35-4.35" />
-                </svg>
-                <h3>No commands found</h3>
-                <p>Try adjusting your search or filter criteria</p>
-            </div>
-        </main>
-    </div>
-
-    <!-- Mobile Sidebar Button -->
-    <button class="mobile-sidebar-btn" onclick="toggleSidebar()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-    </button>
-
-    <script>
-        // Commands Data
-        const commands = [
-            // Moderation
-            { name: 'ban', category: 'moderation', tag: 'mod', desc: 'Permanently ban a user from the server', usage: '/ban <span class="param">@user</span> <span class="optional">[reason]</span>', permission: 'Ban Members', examples: ['/ban @user Spam', '/ban @user'] },
-            { name: 'unban', category: 'moderation', tag: 'mod', desc: 'Unban a user from the server', usage: '/unban <span class="param">@user</span>', permission: 'Ban Members', examples: ['/unban 1309256088201203805'] },
-            { name: 'kick', category: 'moderation', tag: 'mod', desc: 'Kick a user from the server', usage: '/kick <span class="param">@user</span> <span class="optional">[reason]</span>', permission: 'Kick Members', examples: ['/kick @user Breaking rules', '/kick @user'] },
-            { name: 'mute', category: 'moderation', tag: 'mod', desc: 'Timeout a user for a specified duration', usage: '/mute <span class="param">@user</span> <span class="param">duration</span> <span class="optional">[reason]</span>', permission: 'Moderate Members', examples: ['/mute @user 1h Spam', '/mute @user 30m'] },
-            { name: 'unmute', category: 'moderation', tag: 'mod', desc: 'Remove timeout from a user', usage: '/unmute <span class="param">@user</span>', permission: 'Moderate Members', examples: ['/unmute @user'] },
-            { name: 'warn', category: 'moderation', tag: 'mod', desc: 'Issue a warning to a user', usage: '/warn <span class="param">@user</span> <span class="param">reason</span>', permission: 'Moderate Members', examples: ['/warn @user Please follow the rules'] },
-            { name: 'unwarn', category: 'moderation', tag: 'mod', desc: 'Remove a user warning', usage: '/unwarn <span class="param">@user</span> <span class="param">index</span>', permission: 'Moderate Members', examples: ['/unwarn @user 1'] },
-            { name: 'warnings', category: 'moderation', tag: 'mod', desc: 'View all warnings for a user', usage: '/warnings <span class="param">@user</span>', permission: 'Moderate Members', examples: ['/warnings @user'] },
-            { name: 'clear', category: 'moderation', tag: 'mod', desc: 'Bulk delete messages from the channel', usage: '/clear <span class="param">amount</span> <span class="optional">[@user]</span>', permission: 'Manage Messages', examples: ['/clear 50', '/clear 20 @user'] },
-            { name: 'slowmode', category: 'moderation', tag: 'mod', desc: 'Set slowmode for the current channel', usage: '/slowmode <span class="param">seconds</span>', permission: 'Manage Channels', examples: ['/slowmode 5', '/slowmode 0'] },
-            { name: 'lock', category: 'moderation', tag: 'mod', desc: 'Lock a channel to prevent messages', usage: '/lock <span class="optional">[#channel]</span>', permission: 'Manage Channels', examples: ['/lock', '/lock #general'] },
-            { name: 'unlock', category: 'moderation', tag: 'mod', desc: 'Unlock a channel', usage: '/unlock <span class="optional">[#channel]</span>', permission: 'Manage Channels', examples: ['/unlock', '/unlock #general'] },
-            { name: 'unlock', category: 'moderation', tag: 'mod', desc: 'Unlock a previously locked channel', usage: '/unlock <span class="optional">[#channel]</span>', permission: 'Manage Channels', examples: ['/unlock', '/unlock #general'] },
-            { name: 'modlogs', category: 'moderation', tag: 'mod', desc: 'View moderation history for a user', usage: '/modlogs <span class="param">@user</span>', permission: 'Moderate Members', examples: ['/modlogs @user'] },
-            { name: 'nick', category: 'moderation', tag: 'mod', desc: 'Changes a user nickname.', usage: '/nick <user> <nickname>', permission: 'Manage Nicknames', examples: ['/nick @User NewNick'] },
-            { name: 'add_role', category: 'moderation', tag: 'mod', desc: 'Adds a role to a user.', usage: '/add_role <user> <role>', permission: 'Manage Roles', examples: ['/add_role @User Role'] },
-            { name: 'remove_role', category: 'moderation', tag: 'mod', desc: 'Removes a role from a user.', usage: '/remove_role <user> <role>', permission: 'Manage Roles', examples: ['/remove_role @User Role'] },
-            { name: 'roleall', category: 'moderation', tag: 'mod', desc: 'Assigns a role to all members in the server.', usage: '/roleall <role>', permission: 'Administrator', examples: ['/roleall Member'] },
-            { name: 'threadlock', category: 'moderation', tag: 'mod', desc: 'Locks a thread.', usage: '/threadlock', permission: 'Manage Threads', examples: ['/threadlock'] },
-            { name: 'threadunlock', category: 'moderation', tag: 'mod', desc: 'Unlocks a thread.', usage: '/threadunlock', permission: 'Manage Threads', examples: ['/threadunlock'] },
-            { name: 'purge', category: 'moderation', tag: 'mod', desc: 'Deletes messages in bulk.', usage: '/purge <amount> [user]', permission: 'Manage Messages', examples: ['/purge 50'] },
-            { name: 'softban', category: 'moderation', tag: 'mod', desc: 'Performs a softban (ban + unban).', usage: '/softban <user> [reason]', permission: 'Ban Members', examples: ['/softban @User spam'] },
-            { name: 'shadowban', category: 'moderation', tag: 'mod', desc: 'Hidden ban without public logs.', usage: '/shadowban <user> [reason]', permission: 'Ban Members', examples: ['/shadowban @User'] },
-            { name: 'vc_kick', category: 'moderation', tag: 'mod', desc: 'Kicks a user from the voice channel.', usage: '/vc_kick <user>', permission: 'Move Members', examples: ['/vc_kick @User'] },
-            { name: 'vc_mute', category: 'moderation', tag: 'mod', desc: 'Mutes a user in voice channel.', usage: '/vc_mute <user>', permission: 'Mute Members', examples: ['/vc_mute @User'] },
-            { name: 'vc_unmute', category: 'moderation', tag: 'mod', desc: 'Unmutes a user in voice channel.', usage: '/vc_unmute <user>', permission: 'Mute Members', examples: ['/vc_unmute @User'] },
-            { name: 'steal', category: 'moderation', tag: 'mod', desc: 'Steals an emoji and adds it to the server.', usage: '/steal <emoji> [name]', permission: 'Manage Emojis', examples: ['/steal <:face:12345>'] },
-            { name: 'tempban', category: 'moderation', tag: 'mod', desc: 'Temporarily bans a user.', usage: '/tempban <user> <duration> [reason]', permission: 'Ban Members', examples: ['/tempban @User 10m'] },
-            { name: 'lockserver', category: 'moderation', tag: 'mod', desc: 'Locks the server (nobody can send messages).', usage: '/lockserver', permission: 'Administrator', examples: ['/lockserver'] },
-            { name: 'unlockserver', category: 'moderation', tag: 'mod', desc: 'Unlocks the server.', usage: '/unlockserver', permission: 'Administrator', examples: ['/unlockserver'] },
-            { name: 'cleanbots', category: 'moderation', tag: 'mod', desc: 'Deletes messages sent by bots.', usage: '/cleanbots [amount]', permission: 'Manage Messages', examples: ['/cleanbots 200'] },
-            { name: 'ghostping', category: 'moderation', tag: 'mod', desc: 'Pings a user and deletes the message.', usage: '/ghostping <user>', permission: 'Manage Messages', examples: ['/ghostping @User'] },
-
-            // Fun
-            { name: '8ball', category: 'fun', tag: 'fun', desc: 'Ask the magic 8-ball a question', usage: '/8ball <span class="param">question</span>', permission: 'None', examples: ['/8ball Will I win?', '/8ball Should I do it?'] },
-            { name: 'topic', category: 'fun', tag: 'fun', desc: 'Get a random topic to start a conversation.', usage: '/topic', permission: 'None', examples: ['/topic'] },
-            //{ name: 'meme', category: 'fun', tag: 'fun', desc: 'Get a random meme from Reddit', usage: '/meme', permission: 'None', examples: ['/meme'] },
-            //{ name: 'roast', category: 'fun', tag: 'fun', desc: 'Roast someone (friendly banter)', usage: '/roast <span class="param">@user</span>', permission: 'None', examples: ['/roast @friend'] },
-            //{ name: 'joke', category: 'fun', tag: 'fun', desc: 'Get a random joke', usage: '/joke', permission: 'None', examples: ['/joke'] },
-            //{ name: 'trivia', category: 'fun', tag: 'fun', desc: 'Start a trivia question', usage: '/trivia <span class="optional">[category]</span>', permission: 'None', examples: ['/trivia', '/trivia science'] },
-            //{ name: 'rps', category: 'fun', tag: 'fun', desc: 'Play rock paper scissors', usage: '/rps <span class="param">choice</span>', permission: 'None', examples: ['/rps rock', '/rps scissors'] },
-            //{ name: 'ship', category: 'fun', tag: 'fun', desc: 'Ship two users together', usage: '/ship <span class="param">@user1</span> <span class="param">@user2</span>', permission: 'None', examples: ['/ship @user1 @user2'] },
-            //{ name: 'rate', category: 'fun', tag: 'fun', desc: 'Rate something out of 10', usage: '/rate <span class="param">thing</span>', permission: 'None', examples: ['/rate pizza', '/rate @user'] },
-            { name: 'roll', category: 'fun', tag: 'fun', desc: 'Rolls a random number between 1 and a specified maximum', usage: '/roll <span class="param">number</span>', permission: 'None', examples: ['/roll 100', '/roll 50'] },
-            { name: 'flip', category: 'fun', tag: 'fun', desc: 'Flips a coin or flips a user\'s name upside down', usage: '/flip [user]', permission: 'None', examples: ['/flip', '/flip @User'] },
-            { name: 'afk', category: 'fun', tag: 'fun', desc: 'Sets your AFK status with an optional message', usage: '/afk <span class="param">reason</span>', permission: 'None', examples: ['/afk Busy', '/afk Sleeping'] },
-            { name: 'avatar', category: 'fun', tag: 'fun', desc: 'Shows the avatar of a user', usage: '/avatar [user]', permission: 'None', examples: ['/avatar', '/avatar @User'] },
-            { name: 'botinfo', category: 'fun', tag: 'fun', desc: 'Shows information about the bot', usage: '/botinfo', permission: 'None', examples: ['/botinfo'] },
-            { name: 'ping', category: 'fun', tag: 'fun', desc: 'Shows the bot\'s latency', usage: '/ping', permission: 'None', examples: ['/ping'] },
-            { name: 'membercount', category: 'fun', tag: 'fun', desc: 'Shows the total number of server members', usage: '/membercount', permission: 'None', examples: ['/membercount'] },
-            { name: 'serverinfo', category: 'fun', tag: 'fun', desc: 'Shows information about the server', usage: '/serverinfo', permission: 'None', examples: ['/serverinfo'] },
-            { name: 'userinfo', category: 'fun', tag: 'fun', desc: 'Shows information about a user', usage: '/userinfo [user]', permission: 'None', examples: ['/userinfo', '/userinfo @User'] },
-            { name: 'roles', category: 'fun', tag: 'fun', desc: 'Lists all roles in the server', usage: '/roles', permission: 'None', examples: ['/roles'] },
-
-
-            // Utility
-            { name: 'poll', category: 'utility', tag: 'util', desc: 'Create a poll with reactions', usage: '/poll <span class="param">question</span> <span class="param">options</span>', permission: 'None', examples: ['/poll "Pizza?" Yes, No'] },
-            //{ name: 'reminder', category: 'utility', tag: 'util', desc: 'Set a reminder for yourself', usage: '/reminder <span class="param">time</span> <span class="param">message</span>', permission: 'None', examples: ['/reminder 1h Check email'] },
-            //{ name: 'giveaway', category: 'utility', tag: 'util', desc: 'Start a giveaway', usage: '/giveaway <span class="param">duration</span> <span class="param">prize</span>', permission: 'Manage Server', examples: ['/giveaway 24h Nitro'] },
-            { name: 'ticket_setup', category: 'utility', tag: 'util', desc: 'Configures the ticket system.', usage: '/ticket_setup <category> <role>', permission: 'Administrator', examples: ['/ticket_setup Support @Staff'] },
-            { name: 'ticket_panel', category: 'utility', tag: 'util', desc: 'Sends the ticket panel.', usage: '/ticket_panel', permission: 'Administrator', examples: ['/ticket_panel'] },
-            { name: 'logs_set', category: 'utility', tag: 'util', desc: 'Sets the channel where logs will be sent.', usage: '/logs_set <channel>', permission: 'Administrator', examples: ['/logs_set #records'] },
-            { name: 'clonechannel', category: 'utility', tag: 'util', desc: 'Clones the current channel.', usage: '/clonechannel', permission: 'Manage Channels', examples: ['/clonechannel'] },
-            { name: 'antinuke', category: 'utility', tag: 'util', desc: 'Enables or disables anti-nuke protection.', usage: '/antinuke <on/off>', permission: 'Administrator', examples: ['/antinuke on'] },
-            { name: 'modlogs_set', category: 'utility', tag: 'util', desc: 'Sets the channel where moderation logs will be sent.', usage: '/modlogs_set <channel>', permission: 'Manage Guild', examples: ['/modlogs_set #logs'] },
-            { name: 'automod_blacklist_add', category: 'utility', tag: 'util', desc: 'Adds a word to the blacklist.', usage: '/automod_blacklist_add <word>', permission: 'Manage Guild', examples: ['/automod_blacklist_add insult'] },
-            { name: 'automod_blacklist_remove', category: 'utility', tag: 'util', desc: 'Removes a word from the blacklist.', usage: '/automod_blacklist_remove <word>', permission: 'Manage Guild', examples: ['/automod_blacklist_remove insult'] },
-            { name: 'automod_blacklist_list', category: 'utility', tag: 'util', desc: 'Shows the server blacklist.', usage: '/automod_blacklist_list', permission: 'Manage Guild', examples: ['/automod_blacklist_list'] },
-            { name: 'embed', category: 'utility', tag: 'util', desc: 'Create an embed and send it to a channel', usage: '/embed <span class="param">title</span> <span class="optional">description</span> <span class=optional">color</span> <span class="optional">footer</span>', permission: 'Manage Messages', examples: ['/embed Swarve The best Discord bot #fffff Powered by Swarve'] },
-            { name: 'autorole_set', category: 'utility', tag: 'util', desc: 'Set the automatic role', usage: '/autorole_set <span class="param">@role</span>', permission: 'Administrator', examples: ['/autorole_set @Visitant'] },
-            { name: 'autorole_remove', category: 'utility', tag: 'util', desc: 'Disable autorole', usage: '/autorole_remove', permission: 'Administrator', examples: ['/autorole_remove'] },
-            { name: 'welcome_setup', category: 'utility', tag: 'util', desc: 'Sets the channel for welcome messages.', usage: '/welcome setup channel:<#channel>', permission: 'Administrator', examples: ['/welcome setup channel:#general'] },
-            { name: 'welcome_message', category: 'utility', tag: 'util', desc: 'Defines the welcome message. Use {mention}, {user}, {guild}, {count}.', usage: '/welcome message message:<text>', permission: 'Administrator', examples: ['/welcome message message:Welcome {mention}!'] },
-            { name: 'verify_setup', category: 'utility', tag: 'util', desc: 'Sets up the channel and role for button verification.', usage: '/verify setup role:@role [channel:<#channel>]', permission: 'Administrator', examples: ['/verify setup role:@Member channel:#verify-here'] },
-            { name: 'verify_toggle', category: 'utility', tag: 'util', desc: 'Activates or deactivates the verification system.', usage: '/verify toggle state:<on/off>', permission: 'Administrator', examples: ['/verify toggle state:off'] },
-            { name: 'xp_setup', category: 'utility', tag: 'util', desc: 'Configures the channel for level-up notifications.', usage: '/xp setup [channel:<#channel>]', permission: 'Manage Guild', examples: ['/xp setup channel:#level-ups'] },
-            { name: 'xp_disable', category: 'utility', tag: 'util', desc: 'Disables the XP and leveling system.', usage: '/xp disable', permission: 'Manage Guild', examples: ['/xp disable'] },
-            { name: 'xp_enable', category: 'utility', tag: 'util', desc: 'Enables the XP and leveling system.', usage: '/xp enable', permission: 'Manage Guild', examples: ['/xp enable'] },
-            { name: 'bug', category: 'utility', tag: 'util', desc: 'Report an error or bug in the bot to the developers.', usage: '/bug', permission: 'None', examples: ['/bug'] },
-            { name: 'say', category: 'utility', tag: 'util', desc: 'Makes the bot speak in a specified channel.', usage: '/say message:<text> [channel:<#channel>]', permission: 'Manage Messages', examples: ['/say message:Hello world', '/say message:Announcement! channel:#announcements'] },
-            { name: 'invite', category: 'utility', tag: 'util', desc: 'Displays the link to invite the bot to your server.', usage: '/invite', permission: 'None', examples: ['/invite'] },
-            { name: 'web', category: 'utility', tag: 'util', desc: 'Displays the official website or support server.', usage: '/web', permission: 'None', examples: ['/web'] },
-            { name: 'docs', category: 'utility', tag: 'util', desc: 'Displays the bot\'s documentation or usage guide.', usage: '/docs', permission: 'None', examples: ['/docs'] },
-            { name: 'discord', category: 'utility', tag: 'util', desc: 'Displays the official support server.', usage: '/web', permission: 'None', examples: ['/discord'] },
-            
-
-            // Economy
-            { name: 'balance', category: 'eco', tag: 'eco', desc: 'Shows your balance or another user\'s.', usage: '/balance [user:@user]', permission: 'None', examples: ['/balance', '/balance user:@Bob'] },
-{ name: 'daily', category: 'economy', tag: 'eco', desc: 'Claim your daily reward.', usage: '/daily', permission: 'None', examples: ['/daily'] },
-{ name: 'deposit', category: 'economy', tag: 'eco', desc: 'Deposit money from your wallet into the bank.', usage: '/deposit amount:<amount>', permission: 'None', examples: ['/deposit amount:500'] },
-{ name: 'withdraw', category: 'economy', tag: 'eco', desc: 'Withdraw money from the bank into your wallet.', usage: '/withdraw amount:<amount>', permission: 'None', examples: ['/withdraw amount:500'] },
-{ name: 'transfer', category: 'economy', tag: 'eco', desc: 'Transfer money from your wallet to another user.', usage: '/transfer user:@user amount:<amount>', permission: 'None', examples: ['/transfer user:@Alice amount:100'] },
-{ name: 'shop', category: 'economy', tag: 'eco', desc: 'Shows available items to buy.', usage: '/shop', permission: 'None', examples: ['/shop'] },
-{ name: 'buy', category: 'economy', tag: 'eco', desc: 'Buy an item from the shop.', usage: '/buy item:<item name>', permission: 'None', examples: ['/buy item:potion'] },
-{ name: 'inventory', category: 'economy', tag: 'eco', desc: 'Shows your purchased items.', usage: '/inventory', permission: 'None', examples: ['/inventory'] },
-{ name: 'use', category: 'economy', tag: 'eco', desc: 'Use an item from your inventory to activate its effect.', usage: '/use item:<item name>', permission: 'None', examples: ['/use item:map'] },
-{ name: 'work', category: 'economy', tag: 'eco', desc: 'Work to earn some money. (Cooldown: 1h / 10m with potion)', usage: '/work', permission: 'None', examples: ['/work'] },
-{ name: 'crime', category: 'economy', tag: 'eco', desc: 'Commit a crime with risk of failure. (Cooldown: 2h)', usage: '/crime', permission: 'None', examples: ['/crime'] },
-{ name: 'rob', category: 'economy', tag: 'eco', desc: 'Attempt to rob another user. (Cooldown: 6h)', usage: '/rob user:@user', permission: 'None', examples: ['/rob user:@RichGuy'] },
-
-
-            // Music
-            //{ name: 'play', category: 'music', tag: 'music', desc: 'Play a song or playlist', usage: '/play <span class="param">song/URL</span>', permission: 'None', examples: ['/play Never Gonna Give You Up', '/play https://spotify.com/...'] },
-            //{ name: 'skip', category: 'music', tag: 'music', desc: 'Skip the current song', usage: '/skip', permission: 'None', examples: ['/skip'] },
-            //{ name: 'stop', category: 'music', tag: 'music', desc: 'Stop playback and clear queue', usage: '/stop', permission: 'None', examples: ['/stop'] },
-            //{ name: 'pause', category: 'music', tag: 'music', desc: 'Pause the current song', usage: '/pause', permission: 'None', examples: ['/pause'] },
-            //{ name: 'resume', category: 'music', tag: 'music', desc: 'Resume paused playback', usage: '/resume', permission: 'None', examples: ['/resume'] },
-            //{ name: 'queue', category: 'music', tag: 'music', desc: 'View the current music queue', usage: '/queue', permission: 'None', examples: ['/queue'] },
-            //{ name: 'nowplaying', category: 'music', tag: 'music', desc: 'Show the currently playing song', usage: '/nowplaying', permission: 'None', examples: ['/nowplaying'] },
-            //{ name: 'volume', category: 'music', tag: 'music', desc: 'Adjust the playback volume', usage: '/volume <span class="param">1-100</span>', permission: 'None', examples: ['/volume 50', '/volume 80'] },
-            //{ name: 'shuffle', category: 'music', tag: 'music', desc: 'Shuffle the current queue', usage: '/shuffle', permission: 'None', examples: ['/shuffle'] },
-
-            // Leveling
-            //{ name: 'rank', category: 'leveling', tag: 'level', desc: 'Check your rank and XP', usage: '/rank <span class="optional">[@user]</span>', permission: 'None', examples: ['/rank', '/rank @user'] },
-            //{ name: 'leaderboard', category: 'leveling', tag: 'level', desc: 'View the server leaderboard', usage: '/leaderboard', permission: 'None', examples: ['/leaderboard'] },
-            //{ name: 'setxp', category: 'leveling', tag: 'level', desc: "Manually set a user's XP", usage: '/setxp <span class="param">@user</span> <span class="param">amount</span>', permission: 'Manage Server', examples: ['/setxp @user 1000'] },
-            //{ name: 'levelroles', category: 'leveling', tag: 'level', desc: 'Configure level-up role rewards', usage: '/levelroles <span class="param">level</span> <span class="param">@role</span>', permission: 'Manage Server', examples: ['/levelroles 10 @VIP'] },
-            //{ name: 'resetxp', category: 'leveling', tag: 'level', desc: "Reset a user's XP to zero", usage: '/resetxp <span class="param">@user</span>', permission: 'Manage Server', examples: ['/resetxp @user'] },
-
-            // Owner
-            { name: 'guildlist', category: 'owner', tag: 'owner', desc: 'Displays a list of all servers the bot is in and their invitation link.', usage: '/guildlist', permission: 'Bot Owner', examples: ['/guildlist'] },
-            //{ name: 'config', category: 'admin', tag: 'admin', desc: 'Configure bot settings', usage: '/config <span class="param">setting</span> <span class="param">value</span>', permission: 'Administrator', examples: ['/config prefix !', '/config welcome #channel'] },
-            //{ name: 'autorole', category: 'admin', tag: 'admin', desc: 'Set auto-role for new members', usage: '/autorole <span class="param">@role</span>', permission: 'Manage Roles', examples: ['/autorole @Member'] },
-            //{ name: 'logs', category: 'admin', tag: 'admin', desc: 'Configure logging channel', usage: '/logs <span class="param">#channel</span>', permission: 'Administrator', examples: ['/logs #mod-logs'] },
-
-
-            // Config
-            { name: 'config', category: 'config', tag: 'config', desc: 'Shows how to configure the bot by listing key setup commands.', usage: '/config', permission: 'None', examples: ['/config'] }
-        ];
-
-        // Category Icons
-        const categoryIcons = {
-            all: '<path d="M4 6h16M4 12h16M4 18h16"/>',
-            moderation: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-            fun: '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>',
-            utility: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
-            music: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
-            leveling: '<path d="M18 20V10M12 20V4M6 20v-6"/>',
-            owner: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"stroke-linejoin="round"><path d="M5 10l3-5 5 5 5-5 3 5H5z" /><path d="M12 15h0" /><path d="M21 10H3" /><path d="M2 17h20" /><path d="M7 21h10" /></svg>',
-            config: '<path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>',
-            economy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2" ry="2"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="9" x2="12" y2="15"/><line x1="9" y1="12" x2="15" y2="12"/></svg>'
-        };
-
-        // Category Titles
-        const categoryTitles = {
-            all: 'All Commands',
-            moderation: 'Moderation',
-            fun: 'Fun',
-            utility: 'Utility',
-            music: 'Music',
-            leveling: 'Leveling',
-            owner: 'Owner',
-            config: 'Config',
-            economy: 'Economy'
-        };
-
-        let currentCategory = 'all';
-        let searchQuery = '';
-
-        // Render Commands
-        function renderCommands() {
-            const grid = document.getElementById('commandsGrid');
-            const noResults = document.getElementById('noResults');
-            const countEl = document.getElementById('commandCount');
-
-            let filtered = commands;
-
-            // Filter by category
-            if (currentCategory !== 'all') {
-                filtered = filtered.filter(cmd => cmd.category === currentCategory);
-            }
-
-            // Filter by search
-            if (searchQuery) {
-                const query = searchQuery.toLowerCase();
-                filtered = filtered.filter(cmd =>
-                    cmd.name.toLowerCase().includes(query) ||
-                    cmd.desc.toLowerCase().includes(query)
-                );
-            }
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '';
-                noResults.style.display = 'block';
-                countEl.textContent = '0 commands';
-                return;
-            }
-
-            noResults.style.display = 'none';
-            countEl.textContent = `${filtered.length} command${filtered.length !== 1 ? 's' : ''}`;
-
-            grid.innerHTML = filtered.map(cmd => `
-        <div class="command-card" data-command="${cmd.name}">
-          <div class="command-header" onclick="toggleCommand('${cmd.name}')">
-            <div class="command-name">
-              <span class="command-prefix">/</span>
-              <span class="command-title">${cmd.name}</span>
-            </div>
-            <span class="command-desc">${cmd.desc}</span>
-            <div class="command-tags">
-              <span class="command-tag tag-${cmd.tag}">${cmd.tag}</span>
-            </div>
-            <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 9l6 6 6-6"/>
-            </svg>
-          </div>
-          <div class="command-details">
-            <div class="detail-section">
-              <h4>Usage</h4>
-              <div class="usage-box">${cmd.usage}</div>
-            </div>
-            <div class="detail-section">
-              <h4>Required Permission</h4>
-              <span class="permission-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
-                ${cmd.permission}
-              </span>
-            </div>
-            <div class="detail-section">
-              <h4>Examples</h4>
-              <div class="examples-list">
-                ${cmd.examples.map(ex => `
-                  <div class="example-item">
-                    <span>${ex}</span>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>
         </div>
-      `).join('');
-        }
+    </section>
 
-        // Toggle Command Expansion
-        function toggleCommand(name) {
-            const card = document.querySelector(`[data-command="${name}"]`);
-            card.classList.toggle('expanded');
-        }
-
-        // Update Category
-        function updateCategory(category) {
-            currentCategory = category;
-
-            // Update sidebar active state
-            document.querySelectorAll('.category-item').forEach(item => {
-                item.classList.remove('active');
-                if (item.dataset.category === category) {
-                    item.classList.add('active');
-                }
-            });
-
-            // Update header
-            const titleEl = document.getElementById('categoryTitle');
-            titleEl.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          ${categoryIcons[category]}
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        
+                        <span>Swarve Music</span>
+                    </a>
+                    <!-- Footer to English -->
+                    <p>The most complete and reliable music bot for your Discord server.</p>
+                    <div class="social-links">
+                        <a href="https://discord.com/invite/NnDvs4umXE" aria-label="Discord">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
         </svg>
-        ${categoryTitles[category]}
-      `;
+                        </a>
+                        <a href="https://x.com/diegoodev_" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/srTimm/swarve-music" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="/commands">Commands</a>
+                        <a href="/docs">Documentation</a>
+                        <a href="/status">Status</a>
+                        <a href="/changelog">Changelog</a>
+                        <a href="https://swarve.xyz/embed">Embed Builder</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="/blog">Blog</a>
+                        <a href="/team">Team</a>
+                        <a href="https://discord.com/invite/NnDvs4umXE" target="_blank">Support</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="/privacy">Privacy</a>
+                        <a href="/terms">Terms</a>
+                        <a href="/cookies">Cookies</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Swarve Music. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-            renderCommands();
-
-            // Close mobile sidebar
-            document.getElementById('sidebar').classList.remove('open');
-            document.getElementById('sidebarOverlay').classList.remove('open');
-        }
-
-        // Search Handler
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            searchQuery = e.target.value;
-            renderCommands();
-        });
-
-        // Category Click Handlers
-        document.querySelectorAll('.category-item').forEach(item => {
-            item.addEventListener('click', () => {
-                updateCategory(item.dataset.category);
-            });
-        });
-
-        // Mobile Sidebar Toggle
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-            document.getElementById('sidebarOverlay').classList.toggle('open');
-        }
-
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-
-        // Initial Render
-        renderCommands();
-    </script>
+    <script src="script.js"></script>
+    <script src="commands.js"></script>
 </body>
-
 </html>

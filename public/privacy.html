@@ -1,1436 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - Swarve Bot</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="Swarve.png" type="image/png">
-  <meta name="title" content="Swarve - Privacy Policy">
-<meta name="description" content="Learn how Swarve collects, uses, and protects your data while using the Discord bot.">
-<meta name="keywords" content="Swarve, Discord bot, privacy, data protection, policy">
-<meta name="robots" content="index, follow">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --background: #0a0a0a;
-      --foreground: #fafafa;
-      --card: #141414;
-      --card-hover: #1a1a1a;
-      --muted: #a1a1aa;
-      --accent: #5865F2;
-      --accent-hover: #4752c4;
-      --border: #27272a;
-      --green: #22c55e;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--background);
-      color: var(--foreground);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s ease;
-    }
-
-    nav.scrolled {
-      padding: 0.75rem 2rem;
-      background: rgba(10, 10, 10, 0.95);
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: var(--foreground);
-      transition: transform 0.2s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.02);
-    }
-
-    .logo svg {
-      width: 32px;
-      height: 32px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--foreground);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .btn {
-      padding: 0.6rem 1.25rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--foreground);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      background: var(--card);
-      border-color: var(--muted);
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--foreground);
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    /* Progress Bar */
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), #7289da);
-      z-index: 101;
-      transition: width 0.1s ease;
-    }
-
-    /* Hero */
-    .hero {
-      padding: 10rem 2rem 4rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1000px;
-      height: 600px;
-      background: radial-gradient(ellipse, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .privacy-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(34, 197, 94, 0.1);
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      padding: 0.5rem 1rem;
-      border-radius: 100px;
-      font-size: 0.875rem;
-      color: var(--green);
-      margin-bottom: 1.5rem;
-      animation: fadeInUp 0.6s ease both;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
-      animation: fadeInUp 0.6s ease 0.1s both;
-    }
-
-    .hero .subtitle {
-      font-size: 1.125rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      animation: fadeInUp 0.6s ease 0.2s both;
-    }
-
-    .meta-info {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeInUp 0.6s ease 0.3s both;
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .meta-item svg {
-      width: 18px;
-      height: 18px;
-      opacity: 0.7;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Quick Summary Section */
-    .summary-section {
-      max-width: 1000px;
-      margin: 0 auto 3rem;
-      padding: 0 2rem;
-      animation: fadeInUp 0.6s ease 0.4s both;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .summary-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .summary-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--green);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-
-    .summary-card:hover {
-      border-color: var(--green);
-      transform: translateY(-4px);
-    }
-
-    .summary-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .summary-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(34, 197, 94, 0.1);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-
-    .summary-icon svg {
-      width: 24px;
-      height: 24px;
-      color: var(--green);
-    }
-
-    .summary-card h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .summary-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    /* Main Content */
-    .main-container {
-      display: flex;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem 4rem;
-      gap: 4rem;
-    }
-
-    /* Table of Contents */
-    .toc {
-      position: sticky;
-      top: 100px;
-      width: 280px;
-      flex-shrink: 0;
-      height: fit-content;
-      animation: fadeIn 0.6s ease 0.5s both;
-    }
-
-    .toc-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .toc-list {
-      list-style: none;
-      border-left: 1px solid var(--border);
-    }
-
-    .toc-list li {
-      position: relative;
-    }
-
-    .toc-list a {
-      display: block;
-      padding: 0.5rem 0 0.5rem 1rem;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      transition: all 0.2s ease;
-      border-left: 2px solid transparent;
-      margin-left: -1px;
-    }
-
-    .toc-list a:hover {
-      color: var(--foreground);
-    }
-
-    .toc-list a.active {
-      color: var(--green);
-      border-left-color: var(--green);
-      background: linear-gradient(90deg, rgba(34, 197, 94, 0.1), transparent);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Content */
-    .content {
-      flex: 1;
-      max-width: 800px;
-      animation: fadeInUp 0.6s ease 0.3s both;
-    }
-
-    .content section {
-      margin-bottom: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
-    }
-
-    .content section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .content section:last-child {
-      border-bottom: none;
-    }
-
-    .content h2 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
-      color: var(--foreground);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .content h2 .section-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      background: var(--green);
-      border-radius: 8px;
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: white;
-    }
-
-    .content h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 1.5rem 0 0.75rem;
-      color: var(--foreground);
-    }
-
-    .content p {
-      color: var(--muted);
-      margin-bottom: 1rem;
-      line-height: 1.8;
-    }
-
-    .content ul, .content ol {
-      color: var(--muted);
-      margin: 1rem 0 1rem 1.5rem;
-    }
-
-    .content li {
-      margin-bottom: 0.5rem;
-      line-height: 1.7;
-    }
-
-    .content li::marker {
-      color: var(--green);
-    }
-
-    .content a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: all 0.2s ease;
-      border-bottom: 1px solid transparent;
-    }
-
-    .content a:hover {
-      border-bottom-color: var(--accent);
-    }
-
-    /* Data Table */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      background: var(--card);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .data-table th,
-    .data-table td {
-      padding: 1rem 1.25rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .data-table th {
-      background: var(--card-hover);
-      font-weight: 600;
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--foreground);
-    }
-
-    .data-table td {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .data-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .data-table tr:hover td {
-      background: rgba(34, 197, 94, 0.05);
-    }
-
-    .data-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-
-    .data-badge.required {
-      background: rgba(239, 68, 68, 0.1);
-      color: #ef4444;
-    }
-
-    .data-badge.optional {
-      background: rgba(34, 197, 94, 0.1);
-      color: var(--green);
-    }
-
-    /* Highlight Box */
-    .highlight-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .highlight-box:hover {
-      border-color: var(--green);
-      transform: translateX(4px);
-    }
-
-    .highlight-box::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--green);
-    }
-
-    .highlight-box.info::before {
-      background: var(--accent);
-    }
-
-    .highlight-box.warning::before {
-      background: #f59e0b;
-    }
-
-    .highlight-box-title {
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .highlight-box p {
-      margin-bottom: 0;
-    }
-
-    /* Rights Cards */
-    .rights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .rights-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
-      transition: all 0.3s ease;
-    }
-
-    .rights-card:hover {
-      border-color: var(--green);
-      transform: translateY(-2px);
-    }
-
-    .rights-card h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .rights-card h4 svg {
-      width: 18px;
-      height: 18px;
-      color: var(--green);
-    }
-
-    .rights-card p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 3rem 2rem;
-      background: var(--card);
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--foreground);
-    }
-
-    .footer-links a.active {
-      color: var(--green);
-    }
-
-    .copyright {
-      color: var(--muted);
-      font-size: 0.875rem;
-    }
-
-    /* Back to Top */
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 48px;
-      height: 48px;
-      background: var(--green);
-      border: none;
-      border-radius: 12px;
-      color: white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .back-to-top:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(34, 197, 94, 0.5);
-    }
-
-    /* Mobile Styles */
-    @media (max-width: 1024px) {
-      .toc {
-        display: none;
-      }
-
-      .main-container {
-        padding: 0 1.5rem 3rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta {
-        display: none;
-      }
-
-      .mobile-menu-btn {
-        display: block;
-      }
-
-      .hero {
-        padding: 8rem 1.5rem 3rem;
-      }
-
-      .meta-info {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .summary-section {
-        padding: 0 1.5rem;
-      }
-
-      .content h2 {
-        font-size: 1.5rem;
-      }
-
-      .data-table {
-        display: block;
-        overflow-x: auto;
-      }
-
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-links {
-        justify-content: center;
-      }
-    }
-
-    /* Mobile Menu */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--background);
-      z-index: 99;
-      display: flex;
-      flex-direction: column;
-      padding: 6rem 2rem 2rem;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-    }
-
-    .mobile-menu.open {
-      transform: translateX(0);
-    }
-
-    .mobile-menu a {
-      color: var(--foreground);
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-weight: 600;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--border);
-      transition: color 0.2s ease;
-    }
-
-    .mobile-menu a:hover {
-      color: var(--green);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Updated to English with Swarve Music branding -->
+    <title>Privacy Policy - Swarve Music</title>
+    <meta name="description" content="Swarve Music privacy policy. Learn how we protect your data.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progress"></div>
-
-  <!-- Navigation -->
-  <nav id="navbar">
-    <a href="index.html" class="logo">
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="8" fill="#5865F2"/>
-        <path d="M10 12L16 8L22 12V20L16 24L10 20V12Z" fill="white"/>
-      </svg>
-      Swarve
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="commands.html">Commands</a></li>
-      <li><a href="/team">Team</a></li>
-      <li><a href="/docs">Documentation</a></li>
-      <li><a href="https://discord.gg/NnDvs4umXE">Support</a></li>
-    </ul>
-    <div class="nav-cta">
-      <a href="https://discord.gg/NnDvs4umXE" class="btn btn-secondary">Support Server</a>
-      <a href="https://discord.com/oauth2/authorize?client_id=1442642756496265356&permissions=573386723373015&integration_type=0&scope=applications.commands+bot" class="btn btn-primary">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 5v14M5 12h14"/>
+    <div class="particles" id="particles"></div>
+    
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">
+                
+                <!-- Brand name to Swarve Music -->
+                <span>Swarve Music</span>
+            </a>
+            <!-- Navigation links to English -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/commands">Commands</a></li>
+                <li><a href="/docs">Documentation</a></li>
+                <li><a href="/status">Status</a></li>
+                <li><a href="/team">Team</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="https://discord.com/invite/NnDvs4umXE" class="btn btn-ghost" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
         </svg>
-        Add to Discord
-      </a>
-    </div>
-    <button class="mobile-menu-btn" onclick="toggleMenu()">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-  </nav>
+                    Support
+                </a>
+                <a href="https://discord.com/oauth2/authorize?client_id=1443714462942105692&permissions=321888671960896&integration_type=0&scope=applications.commands+bot" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Add to Discord
+                </a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="commands.html">Commands</a>
-    <a href="/docs">Documentation</a>
-    <a href="https://discord.gg/NnDvs4umXE">Support Server</a>
-    <a href="terms.html">Terms of Service</a>
-    <a href="privacy.html">Privacy Policy</a>
-  </div>
+    <main class="page-main" style="padding-top: 100px;">
+        <section class="page-hero">
+            <div class="container">
+                <span class="section-badge">Legal</span>
+                <h1 class="page-title">Privacy Policy</h1>
+                <p class="page-description">Last updated: November 28, 2025</p>
+            </div>
+        </section>
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="hero-content">
-      <div class="privacy-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <section class="legal-section">
+            <div class="container">
+                <div class="legal-content">
+                    <nav class="legal-nav">
+                        <h3>Contents</h3>
+                        <ul>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#data-collected">Data We Collect</a></li>
+                            <li><a href="#data-use">Use of Data</a></li>
+                            <li><a href="#storage">Storage</a></li>
+                            <li><a href="#sharing">Sharing Data</a></li>
+                            <li><a href="#rights">Your Rights</a></li>
+                            <li><a href="#minors">Minors</a></li>
+                            <li><a href="#changes">Changes</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="legal-text">
+                        <section id="introduction">
+                            <h2>1. Introduction</h2>
+                            <p>At Swarve Music, we take our users' privacy very seriously. This Privacy Policy describes how we collect, use, store and protect your information when you use our Discord bot.</p>
+                            <p>By adding Swarve Music to your Discord server or interacting with it, you accept the practices described in this policy.</p>
+                        </section>
+
+                        <section id="data-collected">
+                            <h2>2. Data We Collect</h2>
+                            <p>Swarve Music only collects the minimum data necessary for its operation:</p>
+                            
+                            <div class="legal-card">
+                                <h4>Server Data</h4>
+                                <ul>
+                                    <li>Discord server ID</li>
+                                    <li>Bot settings (prefix, music channel, DJ roles)</li>
+                                    <li>Server playlists (if created)</li>
+                                </ul>
+                            </div>
+
+                            <div class="legal-card">
+                                <h4>User Data</h4>
+                                <ul>
+                                    <li>Discord user ID (for personal playlists)</li>
+                                    <li>Played songs history (optional, if enabled)</li>
+                                    <li>Favorite songs (if saved)</li>
+                                </ul>
+                            </div>
+
+                            <div class="legal-card warning">
+                                <h4>What We DON'T Collect</h4>
+                                <ul>
+                                    <li>Private messages or chat content</li>
+                                    <li>Personally identifiable information (real name, email, address)</li>
+                                    <li>Voice data or audio recordings</li>
+                                    <li>Payment or financial information</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section id="data-use">
+                            <h2>3. Use of Data</h2>
+                            <p>We use collected data exclusively to:</p>
+                            <ul>
+                                <li>Provide and maintain bot functionality</li>
+                                <li>Save your server's custom settings</li>
+                                <li>Enable features like playlists and favorites</li>
+                                <li>Improve user experience and bot performance</li>
+                                <li>Diagnose and solve technical issues</li>
+                                <li>Generate aggregated and anonymous statistics</li>
+                            </ul>
+                        </section>
+
+                        <section id="storage">
+                            <h2>4. Storage and Security</h2>
+                            <p>All data is stored on secure servers with the following protection measures:</p>
+                            <ul>
+                                <li>Encryption in transit (TLS 1.3) and at rest (AES-256)</li>
+                                <li>Access restricted to authorized personnel only</li>
+                                <li>Regular backups in multiple locations</li>
+                                <li>Continuous security monitoring and intrusion detection</li>
+                            </ul>
+                            <p>Data is retained while the bot is active on your server. When removing the bot, server data is automatically deleted within 30 days.</p>
+                        </section>
+
+                        <section id="sharing">
+                            <h2>5. Sharing Data with Third Parties</h2>
+                            <p><strong>We do not sell, rent or share your personal data with third parties</strong> for commercial purposes.</p>
+                            <p>We only share data in the following circumstances:</p>
+                            <ul>
+                                <li>With essential service providers (hosting, database) under strict confidentiality agreements</li>
+                                <li>When required by law or valid legal process</li>
+                                <li>To protect our legal rights or prevent illegal activities</li>
+                            </ul>
+                        </section>
+
+                        <section id="rights">
+                            <h2>6. Your Rights</h2>
+                            <p>You have the right to:</p>
+                            <ul>
+                                <li><strong>Access</strong> - Request a copy of the data we have about you</li>
+                                <li><strong>Rectify</strong> - Correct incorrect or incomplete data</li>
+                                <li><strong>Delete</strong> - Request deletion of your data</li>
+                                <li><strong>Portability</strong> - Receive your data in machine-readable format</li>
+                                <li><strong>Object</strong> - Object to the processing of your data</li>
+                            </ul>
+                            <p>To exercise these rights, contact us through our Discord server or email.</p>
+                        </section>
+
+                        <section id="minors">
+                            <h2>7. Minors</h2>
+                            <p>Swarve Music complies with Discord's Terms of Service, which require users to be at least 13 years old (or the minimum age in their country).</p>
+                            <p>We do not intentionally collect information from minors under 13. If we discover we have collected data from a minor, we will delete it immediately.</p>
+                        </section>
+
+                        <section id="changes">
+                            <h2>8. Changes to this Policy</h2>
+                            <p>We may update this Privacy Policy occasionally. Significant changes will be notified through:</p>
+                            <ul>
+                                <li>Announcement on our official Discord server</li>
+                                <li>Update of the "Last updated" date on this page</li>
+                                <li>Post on our blog</li>
+                            </ul>
+                            <p>We recommend reviewing this policy periodically.</p>
+                        </section>
+
+                        <section id="contact">
+                            <h2>9. Contact</h2>
+                            <p>If you have questions about this Privacy Policy or how we handle your data, you can contact us:</p>
+                            <div class="legal-contact">
+                                <div class="contact-item">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
         </svg>
-        Your Privacy Matters
-      </div>
-      <h1>Privacy Policy</h1>
-      <p class="subtitle">We are committed to protecting your privacy and being transparent about data practices</p>
-      <div class="meta-info">
-        <div class="meta-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-            <line x1="16" y1="2" x2="16" y2="6"/>
-            <line x1="8" y1="2" x2="8" y2="6"/>
-            <line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-          Last Updated: January 15, 2025
-        </div>
-        <div class="meta-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12,6 12,12 16,14"/>
-          </svg>
-          7 min read
-        </div>
-        <div class="meta-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          GDPR Compliant
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Quick Summary -->
-  <section class="summary-section">
-    <div class="summary-grid">
-      <div class="summary-card">
-        <div class="summary-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-            <circle cx="12" cy="12" r="3"/>
-          </svg>
-        </div>
-        <h3>Minimal Data Collection</h3>
-        <p>We only collect data necessary to provide our services. No unnecessary tracking or profiling.</p>
-      </div>
-      <div class="summary-card">
-        <div class="summary-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-        </div>
-        <h3>Secure Storage</h3>
-        <p>All data is encrypted and stored securely with industry-standard protection measures.</p>
-      </div>
-      <div class="summary-card">
-        <div class="summary-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 6h18"/>
-            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
-            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-          </svg>
-        </div>
-        <h3>Data Deletion</h3>
-        <p>Request deletion of your data at any time. We honor all deletion requests promptly.</p>
-      </div>
-      <div class="summary-card">
-        <div class="summary-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
-        </div>
-        <h3>No Data Selling</h3>
-        <p>We never sell, trade, or rent your personal information to third parties.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content -->
-  <div class="main-container">
-    <!-- Table of Contents -->
-    <aside class="toc">
-      <h3 class="toc-title">On this page</h3>
-      <ul class="toc-list">
-        <li><a href="#introduction" class="active">Introduction</a></li>
-        <li><a href="#data-collection">Data We Collect</a></li>
-        <li><a href="#how-we-use">How We Use Data</a></li>
-        <li><a href="#data-storage">Data Storage</a></li>
-        <li><a href="#data-sharing">Data Sharing</a></li>
-        <li><a href="#your-rights">Your Rights</a></li>
-        <li><a href="#data-retention">Data Retention</a></li>
-        <li><a href="#children">Children's Privacy</a></li>
-        <li><a href="#security">Security Measures</a></li>
-        <li><a href="#changes">Policy Changes</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-      </ul>
-    </aside>
-
-    <!-- Content -->
-    <main class="content">
-      <section id="introduction">
-        <h2><span class="section-number">1</span> Introduction</h2>
-        <p>At Swarve, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Discord bot ("Swarve Bot") and related services.</p>
-        <p>By using Swarve Bot, you consent to the data practices described in this policy. If you do not agree with the terms of this Privacy Policy, please do not use our services.</p>
-        <div class="highlight-box">
-          <div class="highlight-box-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="16" x2="12" y2="12"/>
-              <line x1="12" y1="8" x2="12.01" y2="8"/>
-            </svg>
-            Our Commitment
-          </div>
-          <p>We are committed to processing data lawfully, fairly, and in a transparent manner. We follow privacy-by-design principles and collect only what is necessary for our services.</p>
-        </div>
-      </section>
-
-      <section id="data-collection">
-        <h2><span class="section-number">2</span> Data We Collect</h2>
-        <p>We collect different types of data depending on how you interact with Swarve Bot. Below is a comprehensive breakdown of the data we may collect:</p>
-
-        <h3>Automatically Collected Data</h3>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Data Type</th>
-              <th>Description</th>
-              <th>Purpose</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>User ID</strong></td>
-              <td>Your unique Discord identifier</td>
-              <td>Account identification, feature delivery</td>
-            </tr>
-            <tr>
-              <td><strong>Server ID</strong></td>
-              <td>Unique identifier of servers using Swarve</td>
-              <td>Server-specific configurations</td>
-            </tr>
-            <tr>
-              <td><strong>Username</strong></td>
-              <td>Your Discord username and discriminator</td>
-              <td>Display purposes, logging</td>
-            </tr>
-            <tr>
-              <td><strong>Command Usage</strong></td>
-              <td>Commands executed and timestamps</td>
-              <td>Analytics, abuse prevention</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Feature-Specific Data</h3>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>Data Collected</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Leveling System</strong></td>
-              <td>XP points, level, message count, voice time</td>
-              <td><span class="data-badge optional">Optional</span></td>
-            </tr>
-            <tr>
-              <td><strong>Moderation</strong></td>
-              <td>Warnings, bans, kicks, mutes (with reasons)</td>
-              <td><span class="data-badge required">If Used</span></td>
-            </tr>
-            <tr>
-              <td><strong>Custom Commands</strong></td>
-              <td>Command triggers and responses</td>
-              <td><span class="data-badge optional">Optional</span></td>
-            </tr>
-            <tr>
-              <td><strong>Reminders</strong></td>
-              <td>Reminder content and scheduled times</td>
-              <td><span class="data-badge optional">Optional</span></td>
-            </tr>
-            <tr>
-              <td><strong>Server Settings</strong></td>
-              <td>Prefix, enabled features, channel configurations</td>
-              <td><span class="data-badge required">Required</span></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Data We Do NOT Collect</h3>
-        <ul>
-          <li>Message content (except for command processing, not stored)</li>
-          <li>Direct message conversations</li>
-          <li>Voice chat audio or recordings</li>
-          <li>Personal information beyond Discord-provided data</li>
-          <li>Financial information or payment details</li>
-          <li>Location data or IP addresses</li>
-        </ul>
-      </section>
-
-      <section id="how-we-use">
-        <h2><span class="section-number">3</span> How We Use Your Data</h2>
-        <p>We use the collected data for the following purposes:</p>
-        <ul>
-          <li><strong>Service Delivery</strong> - To provide and maintain Swarve Bot's features and functionality</li>
-          <li><strong>Personalization</strong> - To remember your settings, preferences, and server configurations</li>
-          <li><strong>Feature Operation</strong> - To operate specific features like leveling, moderation logs, and custom commands</li>
-          <li><strong>Analytics</strong> - To understand usage patterns and improve our services</li>
-          <li><strong>Abuse Prevention</strong> - To detect and prevent spam, abuse, and violations of our Terms</li>
-          <li><strong>Communication</strong> - To respond to support requests and send important service updates</li>
-          <li><strong>Legal Compliance</strong> - To comply with applicable laws and regulations</li>
-        </ul>
-        <div class="highlight-box info">
-          <div class="highlight-box-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5865F2" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="16" x2="12" y2="12"/>
-              <line x1="12" y1="8" x2="12.01" y2="8"/>
-            </svg>
-            No Advertising
-          </div>
-          <p>We do not use your data for advertising purposes or to create advertising profiles. Your data is used solely to provide and improve our services.</p>
-        </div>
-      </section>
-
-      <section id="data-storage">
-        <h2><span class="section-number">4</span> Data Storage & Location</h2>
-        <p>Your data is stored securely using industry-standard practices:</p>
-        <ul>
-          <li><strong>Database</strong> - Data is stored in encrypted databases hosted on secure cloud infrastructure</li>
-          <li><strong>Location</strong> - Our servers are primarily located in the United States and European Union</li>
-          <li><strong>Encryption</strong> - All data is encrypted at rest and in transit using AES-256 and TLS 1.3</li>
-          <li><strong>Backups</strong> - Regular encrypted backups are maintained for disaster recovery</li>
-          <li><strong>Access Control</strong> - Strict access controls limit who can access stored data</li>
-        </ul>
-        <div class="highlight-box">
-          <div class="highlight-box-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-            Security Standards
-          </div>
-          <p>We follow industry best practices including regular security audits, vulnerability assessments, and penetration testing to ensure your data remains protected.</p>
-        </div>
-      </section>
-
-      <section id="data-sharing">
-        <h2><span class="section-number">5</span> Data Sharing & Disclosure</h2>
-        <p>We do not sell, trade, or rent your personal information. We may share data only in the following limited circumstances:</p>
-        <ul>
-          <li><strong>Service Providers</strong> - With trusted third-party service providers who assist in operating our services (e.g., hosting providers), under strict confidentiality agreements</li>
-          <li><strong>Legal Requirements</strong> - When required by law, court order, or governmental authority</li>
-          <li><strong>Safety</strong> - To protect the safety of our users, staff, or the public</li>
-          <li><strong>Business Transfers</strong> - In connection with a merger, acquisition, or sale of assets (with prior notice)</li>
-          <li><strong>Consent</strong> - With your explicit consent for any other purpose</li>
-        </ul>
-        <h3>Third-Party Services</h3>
-        <p>Swarve Bot may integrate with third-party services. When you use these integrations, their respective privacy policies apply:</p>
-        <ul>
-          <li><a href="https://discord.com/privacy" target="_blank">Discord Privacy Policy</a></li>
-          <li>Music streaming services (when using music features)</li>
-        </ul>
-      </section>
-
-      <section id="your-rights">
-        <h2><span class="section-number">6</span> Your Rights</h2>
-        <p>You have the following rights regarding your personal data:</p>
-        <div class="rights-grid">
-          <div class="rights-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-              Access
-            </h4>
-            <p>Request a copy of the personal data we hold about you.</p>
-          </div>
-          <div class="rights-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-              Rectification
-            </h4>
-            <p>Request correction of inaccurate or incomplete data.</p>
-          </div>
-          <div class="rights-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 6h18"/>
-                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
-                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-              </svg>
-              Erasure
-            </h4>
-            <p>Request deletion of your personal data from our systems.</p>
-          </div>
-          <div class="rights-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                <line x1="9" y1="9" x2="15" y2="15"/>
-                <line x1="15" y1="9" x2="9" y2="15"/>
-              </svg>
-              Restriction
-            </h4>
-            <p>Request limitation of processing in certain circumstances.</p>
-          </div>
-          <div class="rights-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7,10 12,15 17,10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-              Portability
-            </h4>
-            <p>Receive your data in a structured, commonly used format.</p>
-          </div>
-          <div class="rights-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
-              </svg>
-              Objection
-            </h4>
-            <p>Object to certain types of data processing activities.</p>
-          </div>
-        </div>
-        <h3>How to Exercise Your Rights</h3>
-        <p>To exercise any of these rights, please contact us through:</p>
-        <ul>
-          <li>Our Discord support server</li>
-          <li>Email: <a href="mailto:support@nexabro.site">support@nexabro.site</a></li>
-          <li>Using the <code>/privacy</code> command in any server with Swarve</li>
-        </ul>
-        <p>We will respond to your request within 30 days. Some requests may require identity verification.</p>
-      </section>
-
-      <section id="data-retention">
-        <h2><span class="section-number">7</span> Data Retention</h2>
-        <p>We retain your data only for as long as necessary to provide our services and fulfill the purposes outlined in this policy:</p>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Data Type</th>
-              <th>Retention Period</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Server configurations</td>
-              <td>Until bot is removed from server + 30 days</td>
-            </tr>
-            <tr>
-              <td>Leveling data</td>
-              <td>Until deletion requested or server removal</td>
-            </tr>
-            <tr>
-              <td>Moderation logs</td>
-              <td>1 year (configurable by server admins)</td>
-            </tr>
-            <tr>
-              <td>Command logs</td>
-              <td>90 days</td>
-            </tr>
-            <tr>
-              <td>Error logs</td>
-              <td>30 days</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>When Swarve Bot is removed from a server, all server-specific data is automatically scheduled for deletion within 30 days.</p>
-      </section>
-
-      <section id="children">
-        <h2><span class="section-number">8</span> Children's Privacy</h2>
-        <p>Swarve Bot is not intended for use by individuals under the age of 13 (or the minimum age required by Discord in their jurisdiction). We do not knowingly collect personal information from children.</p>
-        <div class="highlight-box warning">
-          <div class="highlight-box-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-              <line x1="12" y1="9" x2="12" y2="13"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-            Parental Notice
-          </div>
-          <p>If you believe we have collected information from a child under 13, please contact us immediately at <a href="mailto:privacy@swarve.bot">privacy@swarve.bot</a> and we will promptly delete such information.</p>
-        </div>
-      </section>
-
-      <section id="security">
-        <h2><span class="section-number">9</span> Security Measures</h2>
-        <p>We implement comprehensive security measures to protect your data:</p>
-        <ul>
-          <li><strong>Encryption</strong> - AES-256 encryption for data at rest, TLS 1.3 for data in transit</li>
-          <li><strong>Access Controls</strong> - Role-based access with principle of least privilege</li>
-          <li><strong>Authentication</strong> - Multi-factor authentication for all administrative access</li>
-          <li><strong>Monitoring</strong> - 24/7 security monitoring and intrusion detection systems</li>
-          <li><strong>Auditing</strong> - Regular security audits and vulnerability assessments</li>
-          <li><strong>Incident Response</strong> - Documented incident response procedures</li>
-        </ul>
-        <p>While we strive to protect your data, no method of transmission over the internet is 100% secure. We cannot guarantee absolute security but commit to promptly notifying affected users in case of a data breach.</p>
-      </section>
-
-      <section id="changes">
-        <h2><span class="section-number">10</span> Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. When we make changes:</p>
-        <ul>
-          <li>We will update the "Last Updated" date at the top of this page</li>
-          <li>For significant changes, we will notify users through our support server</li>
-          <li>We may also send announcements through the bot for major updates</li>
-          <li>Continued use of Swarve Bot after changes constitutes acceptance of the updated policy</li>
-        </ul>
-        <p>We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information.</p>
-      </section>
-
-      <section id="contact">
-        <h2><span class="section-number">11</span> Contact Us</h2>
-        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
-        <ul>
-          <li><strong>Discord Support Server:</strong> <a href="https://discord.gg/NnDvs4umXE">Join our server</a></li>
-          <li><strong>General Support:</strong> <a href="mailto:support@nexabro.site">support@nexabro.site</a></li>
-          <li><strong>Website:</strong> <a href="index.html">swarve.xyz</a></li>
-        </ul>
-        <div class="highlight-box">
-          <div class="highlight-box-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-            Response Time
-          </div>
-          <p>We aim to respond to all privacy-related inquiries within 72 hours. For data access or deletion requests, please allow up to 30 days for processing.</p>
-        </div>
-      </section>
+                                    <div>
+                                        <strong>Discord</strong>
+                                        <p>Official support server</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <polyline points="22,6 12,13 2,6"/>
+                                    </svg>
+                                    <div>
+                                        <strong>Email</strong>
+                                        <p>support@nexabro.site</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-  </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="commands.html">Commands</a>
-        <a href="/docs">Documentation</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="privacy.html" class="active">Privacy Policy</a>
-      </div>
-      <p class="copyright">&copy; 2025 Swarve Bot. All rights reserved.</p>
-    </div>
-  </footer>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        
+                        <span>Swarve Music</span>
+                    </a>
+                    <!-- Footer to English -->
+                    <p>The most complete and reliable music bot for your Discord server.</p>
+                    <div class="social-links">
+                        <a href="https://discord.com/invite/NnDvs4umXE" aria-label="Discord">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+                        </a>
+                        <a href="https://x.com/diegoodev_" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/srTimm/swarve-music" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="/commands">Commands</a>
+                        <a href="/docs">Documentation</a>
+                        <a href="/status">Status</a>
+                        <a href="/changelog">Changelog</a>
+                        <a href="https://swarve.xyz/embed">Embed Builder</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="/blog">Blog</a>
+                        <a href="/team">Team</a>
+                        <a href="https://discord.com/invite/NnDvs4umXE" target="_blank">Support</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="/privacy">Privacy</a>
+                        <a href="/terms">Terms</a>
+                        <a href="/cookies">Cookies</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Swarve Music. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-  <!-- Back to Top Button -->
-  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="18,15 12,9 6,15"/>
-    </svg>
-  </button>
-
-  <script>
-    // Scroll Progress Bar
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      document.getElementById('progress').style.width = scrollPercent + '%';
-
-      // Navbar scroll effect
-      const navbar = document.getElementById('navbar');
-      if (scrollTop > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-
-      // Back to top button
-      const backToTop = document.getElementById('backToTop');
-      if (scrollTop > 500) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-
-      // Update TOC active state
-      updateTOC();
-      
-      // Animate sections on scroll
-      animateSections();
-    });
-
-    // TOC active state
-    function updateTOC() {
-      const sections = document.querySelectorAll('.content section');
-      const tocLinks = document.querySelectorAll('.toc-list a');
-      
-      let currentSection = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
-        if (window.scrollY >= sectionTop) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-      
-      tocLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + currentSection) {
-          link.classList.add('active');
-        }
-      });
-    }
-
-    // Animate sections on scroll
-    function animateSections() {
-      const sections = document.querySelectorAll('.content section');
-      
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (sectionTop < windowHeight * 0.85) {
-          section.classList.add('visible');
-        }
-      });
-    }
-
-    // Initial animation
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(animateSections, 100);
-    });
-
-    // Scroll to top
-    function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-
-    // Mobile menu toggle
-    function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('open');
-      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
-    }
-
-    // Smooth scroll for TOC links
-    document.querySelectorAll('.toc-list a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        
-        if (targetSection) {
-          const offsetTop = targetSection.offsetTop - 100;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -8,7 +8,12 @@
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/embed", "destination": "/embed.html" },
     { "source": "/panel", "destination": "/panel.html" },
-    { "source": "/team", "destination": "/team.html" }
+    { "source": "/team", "destination": "/team.html" },
+    { "source": "/status", "destination": "/status.html" },
+    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/changelog", "destination": "/changelog.html" },
+    { "source": "/cookies", "destination": "/cookies.html" },
+    { "source": "/blog/swarve", "destination": "/blog/swarve.html" }
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
@@ -18,7 +23,12 @@
     { "source": "/privacy.html", "destination": "/privacy", "permanent": true },
     { "source": "/embed.html", "destination": "/embed", "permanent": true },
     { "source": "/panel.html", "destination": "/panel", "permanent": true },
-    { "source": "/team.html", "destination": "/team", "permanent": true }
+    { "source": "/team.html", "destination": "/team", "permanent": true },
+    { "source": "/status.html", "destination": "/status", "permanent": true },
+    { "source": "/blog.html", "destination": "/blog", "permanent": true },
+    { "source": "/changelog.html", "destination": "/changelog", "permanent": true },
+    { "source": "/cookies.html", "destination": "/cookies", "permanent": true },
+    { "source": "/blog/swarve.html", "destination": "/blog/swarve", "permanent": true }
   ],
   "headers": [
     {

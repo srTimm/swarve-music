@@ -1,2721 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swarve - Documentation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="icon" href="Swarve.png" type="image/png">
-  <meta name="title" content="Swarve Documentation - Discord Bot Guide">
-  <meta name="description"
-    content="Complete documentation for Swarve, the Discord bot. Learn how to set up, configure, and use all features.">
-  <meta name="keywords" content="Swarve, Discord bot, documentation, guide, setup, usage, features">
-  <meta name="robots" content="index, follow">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --background: #0a0a0a;
-      --foreground: #fafafa;
-      --card: #141414;
-      --card-hover: #1a1a1a;
-      --muted: #a1a1aa;
-      --accent: #5865F2;
-      --accent-hover: #4752c4;
-      --accent-muted: rgba(88, 101, 242, 0.1);
-      --border: #27272a;
-      --success: #22c55e;
-      --warning: #f59e0b;
-      --error: #ef4444;
-      --info: #3b82f6;
-      --code-bg: #0d0d0d;
-      --sidebar-width: 280px;
-      --toc-width: 220px;
-      --nav-height: 64px;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: calc(var(--nav-height) + 2rem);
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--background);
-      color: var(--foreground);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--background);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--muted);
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: var(--nav-height);
-      padding: 0 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .logo {
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: var(--foreground);
-    }
-
-    .logo svg {
-      width: 28px;
-      height: 28px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 0.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 0.5rem 0.875rem;
-      border-radius: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--foreground);
-      background: var(--card);
-    }
-
-    .nav-links a.active {
-      color: var(--foreground);
-      background: var(--card);
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .nav-search {
-      position: relative;
-    }
-
-    .nav-search input {
-      width: 240px;
-      padding: 0.5rem 1rem 0.5rem 2.5rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--foreground);
-      font-size: 0.875rem;
-      transition: all 0.2s ease;
-    }
-
-    .nav-search input::placeholder {
-      color: var(--muted);
-    }
-
-    .nav-search input:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-muted);
-    }
-
-    .nav-search svg {
-      position: absolute;
-      left: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      color: var(--muted);
-    }
-
-    .nav-search kbd {
-      position: absolute;
-      right: 0.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--background);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.15rem 0.4rem;
-      font-size: 0.7rem;
-      color: var(--muted);
-      font-family: inherit;
-    }
-
-    .btn {
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.875rem;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-
-    .btn-icon {
-      padding: 0.5rem;
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border);
-    }
-
-    .btn-icon:hover {
-      color: var(--foreground);
-      background: var(--card);
-    }
-
-    /* Mobile Menu Button */
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--foreground);
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    /* Layout */
-    .docs-layout {
-      display: flex;
-      padding-top: var(--nav-height);
-      min-height: 100vh;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: var(--nav-height);
-      left: 0;
-      bottom: 0;
-      width: var(--sidebar-width);
-      background: var(--background);
-      border-right: 1px solid var(--border);
-      overflow-y: auto;
-      padding: 1.5rem 0;
-      transition: transform 0.3s ease;
-      z-index: 50;
-    }
-
-    .sidebar-section {
-      margin-bottom: 1.5rem;
-    }
-
-    .sidebar-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      padding: 0 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .sidebar-links {
-      list-style: none;
-    }
-
-    .sidebar-links a {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.5rem 1.5rem;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-      border-left: 2px solid transparent;
-    }
-
-    .sidebar-links a:hover {
-      color: var(--foreground);
-      background: var(--card);
-    }
-
-    .sidebar-links a.active {
-      color: var(--accent);
-      background: var(--accent-muted);
-      border-left-color: var(--accent);
-    }
-
-    .sidebar-links a svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
-
-    .sidebar-badge {
-      margin-left: auto;
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 0.15rem 0.5rem;
-      border-radius: 100px;
-      background: var(--accent-muted);
-      color: var(--accent);
-    }
-
-    .sidebar-badge.new {
-      background: rgba(34, 197, 94, 0.1);
-      color: var(--success);
-    }
-
-    /* Main Content */
-    .main-content {
-      flex: 1;
-      margin-left: var(--sidebar-width);
-      margin-right: var(--toc-width);
-      min-width: 0;
-    }
-
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-    }
-
-    /* Breadcrumb */
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .breadcrumb a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .breadcrumb a:hover {
-      color: var(--accent);
-    }
-
-    .breadcrumb svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    /* Page Header */
-    .page-header {
-      margin-bottom: 3rem;
-      animation: fadeInUp 0.5s ease;
-    }
-
-    .page-header h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--foreground) 0%, var(--muted) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .page-header p {
-      font-size: 1.125rem;
-      color: var(--muted);
-      max-width: 600px;
-    }
-
-    /* Content Typography */
-    .content h2 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin: 3rem 0 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-      letter-spacing: -0.01em;
-      scroll-margin-top: calc(var(--nav-height) + 2rem);
-    }
-
-    .content h2:first-of-type {
-      margin-top: 0;
-    }
-
-    .content h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 2rem 0 1rem;
-      scroll-margin-top: calc(var(--nav-height) + 2rem);
-    }
-
-    .content h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 1.5rem 0 0.75rem;
-      scroll-margin-top: calc(var(--nav-height) + 2rem);
-    }
-
-    .content p {
-      margin-bottom: 1.25rem;
-      color: var(--muted);
-    }
-
-    .content a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: opacity 0.2s ease;
-    }
-
-    .content a:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-
-    .content ul,
-    .content ol {
-      margin-bottom: 1.25rem;
-      padding-left: 1.5rem;
-      color: var(--muted);
-    }
-
-    .content li {
-      margin-bottom: 0.5rem;
-    }
-
-    .content strong {
-      color: var(--foreground);
-      font-weight: 600;
-    }
-
-    /* Inline Code */
-    .content code:not(pre code) {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85em;
-      color: var(--accent);
-    }
-
-    /* Code Blocks */
-    .code-block {
-      position: relative;
-      margin: 1.5rem 0;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      animation: fadeIn 0.4s ease;
-    }
-
-    .code-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1rem;
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .code-lang {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .code-lang-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
-
-    .code-lang-dot.js {
-      background: #f7df1e;
-    }
-
-    .code-lang-dot.ts {
-      background: #3178c6;
-    }
-
-    .code-lang-dot.bash {
-      background: #89e051;
-    }
-
-    .code-lang-dot.json {
-      background: #f59e0b;
-    }
-
-    .code-copy {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.75rem;
-      background: var(--background);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--muted);
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .code-copy:hover {
-      color: var(--foreground);
-      border-color: var(--muted);
-    }
-
-    .code-copy.copied {
-      color: var(--success);
-      border-color: var(--success);
-    }
-
-    .code-copy svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    pre {
-      background: var(--code-bg);
-      padding: 1.25rem 1.5rem;
-      overflow-x: auto;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.875rem;
-      line-height: 1.7;
-    }
-
-    pre code {
-      color: var(--foreground);
-    }
-
-    /* Syntax Highlighting */
-    .token-keyword {
-      color: #c678dd;
-    }
-
-    .token-string {
-      color: #98c379;
-    }
-
-    .token-number {
-      color: #d19a66;
-    }
-
-    .token-comment {
-      color: #5c6370;
-      font-style: italic;
-    }
-
-    .token-function {
-      color: #61afef;
-    }
-
-    .token-property {
-      color: #e06c75;
-    }
-
-    .token-operator {
-      color: #56b6c2;
-    }
-
-    .token-class {
-      color: #e5c07b;
-    }
-
-    .token-variable {
-      color: #e06c75;
-    }
-
-    .token-constant {
-      color: #d19a66;
-    }
-
-    .token-builtin {
-      color: #56b6c2;
-    }
-
-    /* Callouts */
-    .callout {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      border-radius: 10px;
-      margin: 1.5rem 0;
-      border: 1px solid;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .callout-icon {
-      flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      margin-top: 2px;
-    }
-
-    .callout-content h4 {
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin: 0 0 0.25rem;
-    }
-
-    .callout-content p {
-      font-size: 0.9rem;
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    .callout.info {
-      background: rgba(59, 130, 246, 0.1);
-      border-color: rgba(59, 130, 246, 0.3);
-    }
-
-    .callout.info .callout-icon {
-      color: var(--info);
-    }
-
-    .callout.info h4 {
-      color: var(--info);
-    }
-
-    .callout.warning {
-      background: rgba(245, 158, 11, 0.1);
-      border-color: rgba(245, 158, 11, 0.3);
-    }
-
-    .callout.warning .callout-icon {
-      color: var(--warning);
-    }
-
-    .callout.warning h4 {
-      color: var(--warning);
-    }
-
-    .callout.success {
-      background: rgba(34, 197, 94, 0.1);
-      border-color: rgba(34, 197, 94, 0.3);
-    }
-
-    .callout.success .callout-icon {
-      color: var(--success);
-    }
-
-    .callout.success h4 {
-      color: var(--success);
-    }
-
-    .callout.danger {
-      background: rgba(239, 68, 68, 0.1);
-      border-color: rgba(239, 68, 68, 0.3);
-    }
-
-    .callout.danger .callout-icon {
-      color: var(--error);
-    }
-
-    .callout.danger h4 {
-      color: var(--error);
-    }
-
-    /* Cards Grid */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .doc-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .doc-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .doc-card-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--accent-muted);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-
-    .doc-card-icon svg {
-      width: 20px;
-      height: 20px;
-      color: var(--accent);
-    }
-
-    .doc-card h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--foreground);
-    }
-
-    .doc-card p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    /* Table */
-    .table-wrapper {
-      overflow-x: auto;
-      margin: 1.5rem 0;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-    }
-
-    th {
-      background: var(--card);
-      text-align: left;
-      padding: 0.875rem 1rem;
-      font-weight: 600;
-      color: var(--foreground);
-      border-bottom: 1px solid var(--border);
-    }
-
-    td {
-      padding: 0.875rem 1rem;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    tr:hover td {
-      background: var(--card);
-    }
-
-    /* Steps */
-    .steps {
-      list-style: none;
-      padding: 0;
-      margin: 1.5rem 0;
-      counter-reset: step;
-    }
-
-    .step {
-      position: relative;
-      padding-left: 3rem;
-      padding-bottom: 2rem;
-      border-left: 2px solid var(--border);
-      margin-left: 0.75rem;
-    }
-
-    .step:last-child {
-      border-left-color: transparent;
-      padding-bottom: 0;
-    }
-
-    .step::before {
-      counter-increment: step;
-      content: counter(step);
-      position: absolute;
-      left: -0.875rem;
-      top: 0;
-      width: 1.5rem;
-      height: 1.5rem;
-      background: var(--accent);
-      color: white;
-      border-radius: 50%;
-      font-size: 0.75rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .step h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0 0 0.5rem;
-      color: var(--foreground);
-    }
-
-    .step p {
-      margin: 0;
-      font-size: 0.9rem;
-    }
-
-    /* Table of Contents */
-    .toc {
-      position: fixed;
-      top: var(--nav-height);
-      right: 0;
-      bottom: 0;
-      width: var(--toc-width);
-      padding: 2rem 1.5rem;
-      overflow-y: auto;
-      border-left: 1px solid var(--border);
-    }
-
-    .toc-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .toc-links {
-      list-style: none;
-    }
-
-    .toc-links a {
-      display: block;
-      padding: 0.35rem 0;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: all 0.2s ease;
-      border-left: 2px solid transparent;
-      padding-left: 0.75rem;
-      margin-left: -0.75rem;
-    }
-
-    .toc-links a:hover {
-      color: var(--foreground);
-    }
-
-    .toc-links a.active {
-      color: var(--accent);
-      border-left-color: var(--accent);
-    }
-
-    .toc-links .toc-h3 {
-      padding-left: 1.5rem;
-      font-size: 0.8rem;
-    }
-
-    /* Navigation Footer */
-    .page-nav {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .page-nav-link {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      padding: 1rem 1.25rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      flex: 1;
-      max-width: 50%;
-    }
-
-    .page-nav-link:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .page-nav-link.next {
-      text-align: right;
-      align-items: flex-end;
-    }
-
-    .page-nav-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .page-nav-label svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    .page-nav-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--foreground);
-    }
-
-    /* Search Modal */
-    .search-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(4px);
-      z-index: 200;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding-top: 15vh;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.2s ease;
-    }
-
-    .search-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .search-modal-content {
-      width: 100%;
-      max-width: 600px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transform: translateY(-20px) scale(0.95);
-      transition: transform 0.2s ease;
-    }
-
-    .search-modal.active .search-modal-content {
-      transform: translateY(0) scale(1);
-    }
-
-    .search-modal-input {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .search-modal-input svg {
-      width: 20px;
-      height: 20px;
-      color: var(--muted);
-    }
-
-    .search-modal-input input {
-      flex: 1;
-      background: none;
-      border: none;
-      color: var(--foreground);
-      font-size: 1rem;
-      outline: none;
-    }
-
-    .search-modal-input input::placeholder {
-      color: var(--muted);
-    }
-
-    .search-results {
-      max-height: 400px;
-      overflow-y: auto;
-    }
-
-    .search-result {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.875rem 1.25rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .search-result:hover,
-    .search-result.selected {
-      background: var(--accent-muted);
-    }
-
-    .search-result-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--background);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .search-result-icon svg {
-      width: 18px;
-      height: 18px;
-      color: var(--muted);
-    }
-
-    .search-result-text h4 {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.15rem;
-    }
-
-    .search-result-text p {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .search-empty {
-      padding: 3rem 1.25rem;
-      text-align: center;
-      color: var(--muted);
-    }
-
-    .search-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1.25rem;
-      background: var(--background);
-      border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .search-footer kbd {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.15rem 0.4rem;
-      font-family: inherit;
-      margin: 0 0.25rem;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .animate-in {
-      animation: fadeInUp 0.5s ease forwards;
-      opacity: 0;
-    }
-
-    .animate-in:nth-child(1) {
-      animation-delay: 0.05s;
-    }
-
-    .animate-in:nth-child(2) {
-      animation-delay: 0.1s;
-    }
-
-    .animate-in:nth-child(3) {
-      animation-delay: 0.15s;
-    }
-
-    .animate-in:nth-child(4) {
-      animation-delay: 0.2s;
-    }
-
-    .animate-in:nth-child(5) {
-      animation-delay: 0.25s;
-    }
-
-    .animate-in:nth-child(6) {
-      animation-delay: 0.3s;
-    }
-
-    /* Mobile Styles */
-    @media (max-width: 1200px) {
-      .toc {
-        display: none;
-      }
-
-      .main-content {
-        margin-right: 0;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .sidebar {
-        transform: translateX(-100%);
-      }
-
-      .sidebar.active {
-        transform: translateX(0);
-      }
-
-      .main-content {
-        margin-left: 0;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .nav-search {
-        display: none;
-      }
-
-      .mobile-menu-btn {
-        display: flex;
-      }
-
-      .content {
-        padding: 2rem 1.25rem;
-      }
-
-      .page-header h1 {
-        font-size: 2rem;
-      }
-
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .page-nav {
-        flex-direction: column;
-      }
-
-      .page-nav-link {
-        max-width: 100%;
-      }
-
-      .page-nav-link.next {
-        text-align: left;
-        align-items: flex-start;
-      }
-    }
-
-    /* Overlay for mobile sidebar */
-    .sidebar-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 40;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .sidebar-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Progress Bar */
-    .progress-bar {
-      position: fixed;
-      top: var(--nav-height);
-      left: 0;
-      height: 2px;
-      background: var(--accent);
-      z-index: 99;
-      transition: width 0.1s linear;
-    }
-
-    /* Feedback Section */
-    .feedback-section {
-      margin-top: 4rem;
-      padding: 2rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .feedback-section h4 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: var(--foreground);
-    }
-
-    .feedback-section p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .feedback-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-    }
-
-    .feedback-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: var(--background);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .feedback-btn:hover {
-      border-color: var(--accent);
-      color: var(--foreground);
-    }
-
-    .feedback-btn.selected {
-      background: var(--accent-muted);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Updated to English with Swarve Music branding -->
+    <title>Documentation - Swarve Music</title>
+    <meta name="description" content="Complete guide for using and configuring Swarve Music.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar"></div>
-
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-left">
-      <a href="https://swarve.xyz" class="logo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5z" />
-          <path d="M2 17l10 5 10-5" />
-          <path d="M2 12l10 5 10-5" />
-        </svg>
-        Swarve
-      </a>
-      <ul class="nav-links">
-        <li><a href="https://swarve.xyz">Home</a></li>
-        <li><a href="https://swarve.xyz/commands">Commands</a></li>
-        <li><a href="/team">Team</a></li>
-        <li><a href="/" class="active">Docs</a></li>
-      </ul>
-    </div>
-    <div class="nav-right">
-      <div class="nav-search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8" />
-          <path d="M21 21l-4.35-4.35" />
-        </svg>
-        <input type="text" placeholder="Search documentation..." id="searchInput" readonly>
-        <kbd></kbd>
-      </div>
-      <!-- <a href="#" class="btn btn-icon" title="GitHub">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-      </a> -->
-      
-      <a href="https://discord.com/oauth2/authorize?client_id=1442642756496265356&permissions=573386723373015&integration_type=0&scope=applications.commands+bot" class="btn btn-primary">Add to
-        Server</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Search Modal -->
-  <div class="search-modal" id="searchModal">
-    <div class="search-modal-content">
-      <div class="search-modal-input">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8" />
-          <path d="M21 21l-4.35-4.35" />
-        </svg>
-        <input type="text" placeholder="Search documentation..." id="modalSearchInput" autofocus>
-      </div>
-      <div class="search-results" id="searchResults">
-        <div class="search-result selected">
-          <div class="search-result-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-            </svg>
-          </div>
-          <div class="search-result-text">
-            <h4>Getting Started</h4>
-            <p>Quick setup guide for Swarve bot</p>
-          </div>
-        </div>
-        <div class="search-result">
-          <div class="search-result-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-          </div>
-          <div class="search-result-text">
-            <h4>Commands Reference</h4>
-            <p>Complete list of all bot commands</p>
-          </div>
-        </div>
-        <div class="search-result">
-          <div class="search-result-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="3" />
-              <path
-                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-            </svg>
-          </div>
-          <div class="search-result-text">
-            <h4>Configuration</h4>
-            <p>Customize Swarve for your server</p>
-          </div>
-        </div>
-      </div>
-      <div class="search-footer">
-        <span><kbd>↑</kbd><kbd>↓</kbd> to navigate</span>
-        <span><kbd>↵</kbd> to select</span>
-        <span><kbd>esc</kbd> to close</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sidebar Overlay -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-  <!-- Docs Layout -->
-  <div class="docs-layout">
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-section">
-        <div class="sidebar-title">Getting Started</div>
-        <ul class="sidebar-links">
-          <li>
-            <a href="#introduction" class="active">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
-              Introduction
+    <div class="particles" id="particles"></div>
+    
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">
+                
+                <span>Swarve Music</span>
             </a>
-          </li>
-          <li>
-            <a href="#quick-start">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-              </svg>
-              Quick Start
-            </a>
-          </li>
-          <li>
-            <a href="#installation">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-              Installation
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="sidebar-section">
-        <div class="sidebar-title">Configuration</div>
-        <ul class="sidebar-links">
-          <li>
-            <a href="#bot-settings">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3" />
-                <path
-                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-              </svg>
-              Bot Settings
-            </a>
-          </li>
-          <li>
-            <a href="#permissions">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-              Permissions
-            </a>
-          </li>
-          <!-- <li>
-            <a href="#prefix">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="4 7 4 4 20 4 20 7" />
-                <line x1="9" y1="20" x2="15" y2="20" />
-                <line x1="12" y1="4" x2="12" y2="20" />
-              </svg>
-              Custom Prefix
-            </a>
-          </li>
-          <li>
-            <a href="#channels">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
-              Channel Setup
-            </a>
-          </li> -->
-        </ul>
-      </div>
-
-      <div class="sidebar-section">
-        <div class="sidebar-title">Features</div>
-        <ul class="sidebar-links">
-          <li>
-            <a href="#moderation">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <path d="M9 12l2 2 4-4" />
-              </svg>
-              Moderation
-              <span class="sidebar-badge">Popular</span>
-            </a>
-          </li>
-          <!-- <li>
-            <a href="#leveling">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                <polyline points="17 6 23 6 23 12" />
-              </svg>
-              Leveling System
-            </a>
-          </li>
-          <li>
-            <a href="#music">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="5.5" cy="17.5" r="2.5" />
-                <circle cx="17.5" cy="15.5" r="2.5" />
-                <path d="M8 17V5l12-2v12" />
-              </svg>
-              Music Player
-            </a>
-          </li>
-          <li>
-            <a href="#welcome">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              Welcome Messages
-            </a>
-          </li> -->
-          <li>
-            <a href="#automod">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
-              </svg>
-              Auto Moderation
-              <span class="sidebar-badge new">New</span>
-            </a>
-          </li>
-          <!-- <li>
-            <a href="#custom-commands">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-              Custom Commands
-            </a>
-          </li> -->
-        </ul>
-      </div>
-
-      <div class="sidebar-section">
-        <div class="sidebar-title">API & Integrations</div>
-        <ul class="sidebar-links">
-          <!-- <li>
-            <a href="#api-overview">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                <line x1="8" y1="21" x2="16" y2="21" />
-                <line x1="12" y1="17" x2="12" y2="21" />
-              </svg>
-              API Overview
-            </a>
-          </li>
-          <li>
-            <a href="#webhooks">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-              </svg>
-              Webhooks
-            </a>
-          </li> -->
-          <li>
-            <a href="/panel">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="7" height="7" />
-                <rect x="14" y="3" width="7" height="7" />
-                <rect x="14" y="14" width="7" height="7" />
-                <rect x="3" y="14" width="7" height="7" />
-              </svg>
-              Dashboard
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="sidebar-section">
-        <div class="sidebar-title">Resources</div>
-        <ul class="sidebar-links">
-          <li>
-            <a href="#faq">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
-              </svg>
-              FAQ
-            </a>
-          </li>
-          <!-- <li>
-            <a href="#troubleshooting">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                <line x1="11" y1="8" x2="11" y2="14" />
-                <line x1="8" y1="11" x2="14" y2="11" />
-              </svg>
-              Troubleshooting
-            </a>
-          </li>
-          <li>
-            <a href="#changelog">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
-                <polyline points="10 9 9 9 8 9" />
-              </svg>
-              Changelog
-            </a>
-          </li> -->
-        </ul>
-      </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <div class="content">
-        <!-- Breadcrumb -->
-        <div class="breadcrumb">
-          <a href="/">Docs</a>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-          <span>Getting Started</span>
-        </div>
-
-        <!-- Page Header -->
-        <div class="page-header">
-          <h1>Introduction to Swarve</h1>
-          <p>Learn how to set up and configure Swarve, the powerful Discord bot designed to enhance your server
-            experience.</p>
-        </div>
-
-        <!-- Quick Links -->
-        <div class="cards-grid">
-          <a href="#quick-start" class="doc-card animate-in">
-            <div class="doc-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-              </svg>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/commands">Commands</a></li>
+                <li><a href="/docs" class="active">Documentation</a></li>
+                <li><a href="/status">Status</a></li>
+                <li><a href="/team">Team</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="https://discord.gg/support" class="btn btn-ghost" target="_blank">Support</a>
+                <a href="#" class="btn btn-primary">Invite Bot</a>
             </div>
-            <h3>Quick Start</h3>
-            <p>Get Swarve running on your server in under 5 minutes.</p>
-          </a>
-          <a href="commands.html" class="doc-card animate-in">
-            <div class="doc-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Documentation</h1>
+            <p>Everything you need to know to get the most out of Swarve Music</p>
+        </div>
+    </section>
+
+    <section class="docs-section">
+        <div class="container">
+            <div class="docs-layout">
+                <aside class="docs-sidebar">
+                    <nav class="docs-nav">
+                        <div class="docs-nav-group">
+                            <h4>Getting Started</h4>
+                            <a href="#getting-started" class="docs-nav-link active">Introduction</a>
+                            <a href="#installation" class="docs-nav-link">Installation</a>
+                            <a href="#quick-start" class="docs-nav-link">Quick Start</a>
+                        </div>
+                        <div class="docs-nav-group">
+                            <h4>Guides</h4>
+                            <a href="#playing-music" class="docs-nav-link">Playing Music</a>
+                            
+                         
+                            
+                        </div>
+                        <div class="docs-nav-group">
+                            <h4>Configuration</h4>
+                            <a href="#permissions" class="docs-nav-link">Permissions</a>
+                            
+                            
+                        </div>
+                        
+                    </nav>
+                </aside>
+
+                <main class="docs-content">
+                    <article id="getting-started" class="docs-article">
+                        <h2>Getting Started</h2>
+                        <p>Welcome to the Swarve Music documentation. This guide will help you set up and use the most complete music bot for Discord.</p>
+                        
+                        <div class="docs-callout info">
+                            <div class="callout-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4M12 8h.01"/>
+                                </svg>
+                            </div>
+                            <div class="callout-content">
+                                <strong>Note:</strong> Swarve Music requires voice channel connection and message sending permissions to function properly.
+                            </div>
+                        </div>
+
+                        <h3>Prerequisites</h3>
+                        <ul class="docs-list">
+                            <li>A Discord server where you have administrator permissions</li>
+                            <li>A voice channel where the bot can connect</li>
+                            <li>A text channel to send commands</li>
+                        </ul>
+                    </article>
+
+                    <article id="installation" class="docs-article">
+                        <h2>Installation</h2>
+                        <p>Adding Swarve Music to your server is very simple. Follow these steps:</p>
+                        
+                        <div class="docs-steps">
+                            <div class="docs-step">
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <h4>Click "Add to Discord"</h4>
+                                    <p>Use the invite button on our main page or at the top of this documentation.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <h4>Select your server</h4>
+                                    <p>Choose the server where you want to add Swarve Music from the dropdown menu.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <h4>Authorize permissions</h4>
+                                    <p>Review and accept the necessary permissions for the bot to function properly.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="step-number">4</span>
+                                <div class="step-content">
+                                    <h4>Done!</h4>
+                                    <p>Swarve Music is now on your server. Use <code>/play</code> to start playing music.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="quick-start" class="docs-article">
+                        <h2>Quick Start</h2>
+                        <p>Once Swarve Music is on your server, you can start using it immediately:</p>
+                        
+                        <div class="docs-code-block">
+                            <div class="code-header">
+                                <span>Basic Commands</span>
+                            </div>
+                            <pre><code>/play Blinding Lights     # Play a song
+/stop                      # Stop and disconnect the bot</code></pre>
+                        </div>
+                    </article>
+
+                    <article id="playing-music" class="docs-article">
+                        <h2>Playing Music</h2>
+                        <p>Swarve Music supports multiple music sources. You can play from:</p>
+                        
+                        <div class="docs-grid">
+                            <div class="docs-card">
+                                <h4>YouTube</h4>
+                                <p>Search by name or paste a direct YouTube or YouTube Music link.</p>
+                                <code>/play https://youtube.com/watch?v=...</code>
+                            </div>
+                            <!-- <div class="docs-card">
+                                <h4>Spotify</h4>
+                                <p>Paste links to songs, albums or Spotify playlists.</p>
+                                <code>/play https://open.spotify.com/track/...</code>
+                            </div>
+                            <div class="docs-card">
+                                <h4>SoundCloud</h4>
+                                <p>Play tracks and playlists from SoundCloud.</p>
+                                <code>/play https://soundcloud.com/...</code>
+                            </div>
+                            <div class="docs-card">
+                                <h4>Direct Search</h4>
+                                <p>Simply type the song name.</p>
+                                <code>/play song name</code>
+                            </div> -->
+                        </div>
+                    </article>
+
+                    
+
+                    <!-- <article id="filters" class="docs-article">
+                        <h2>Audio Filters</h2>
+                        <p>Customize your music sound with our audio filters:</p>
+                        
+                        <div class="docs-filters-grid">
+                            <div class="filter-card">
+                                <span class="filter-name">Bass Boost</span>
+                                <span class="filter-desc">Enhance bass</span>
+                            </div>
+                            <div class="filter-card">
+                                <span class="filter-name">Nightcore</span>
+                                <span class="filter-desc">Faster and higher pitch</span>
+                            </div>
+                            <div class="filter-card">
+                                <span class="filter-name">Vaporwave</span>
+                                <span class="filter-desc">Slower and lower pitch</span>
+                            </div>
+                            <div class="filter-card">
+                                <span class="filter-name">8D Audio</span>
+                                <span class="filter-desc">Surround effect</span>
+                            </div>
+                            <div class="filter-card">
+                                <span class="filter-name">Karaoke</span>
+                                <span class="filter-desc">Reduce vocals</span>
+                            </div>
+                            <div class="filter-card">
+                                <span class="filter-name">Tremolo</span>
+                                <span class="filter-desc">Vibration effect</span>
+                            </div>
+                        </div>
+
+                        <div class="docs-callout warning">
+                            <div class="callout-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                    <line x1="12" y1="9" x2="12" y2="13"/>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                </svg>
+                            </div>
+                            <div class="callout-content">
+                                <strong>Note:</strong> Some filters may cause a brief interruption in playback when applied.
+                            </div>
+                        </div>
+                    </article> -->
+
+                    <article id="permissions" class="docs-article">
+                        <h2>Permissions</h2>
+                        <p>Swarve Music needs the following permissions to function properly:</p>
+                        
+                        <ul class="docs-list">
+                            <li><strong>Connect:</strong> To join voice channels</li>
+                            <li><strong>Speak:</strong> To play audio</li>
+                            <li><strong>Send Messages:</strong> To respond to commands</li>
+                            <li><strong>Embed Links:</strong> To show embeds with information</li>
+                            <li><strong>Add Reactions:</strong> For interactive controls</li>
+                            <li><strong>Use Application Commands:</strong> For slash commands</li>
+                        </ul>
+                    </article>
+
+                    
+                </main>
             </div>
-            <h3>Commands</h3>
-            <p>Explore all available commands and their usage.</p>
-          </a>
-          <a href="#bot-settings" class="doc-card animate-in">
-            <div class="doc-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3" />
-                <path
-                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-              </svg>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        
+                        <span>Swarve Music</span>
+                    </a>
+                    <!-- Footer to English -->
+                    <p>The most complete and reliable music bot for your Discord server.</p>
+                    <div class="social-links">
+                        <a href="https://discord.com/invite/NnDvs4umXE" aria-label="Discord">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+                        </a>
+                        <a href="https://x.com/diegoodev_" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/srTimm/swarve-music" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="/commands">Commands</a>
+                        <a href="/docs">Documentation</a>
+                        <a href="/status">Status</a>
+                        <a href="/changelog">Changelog</a>
+                        <a href="https://swarve.xyz/embed">Embed Builder</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="/blog">Blog</a>
+                        <a href="/team">Team</a>
+                        <a href="https://discord.com/invite/NnDvs4umXE" target="_blank">Support</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="/privacy">Privacy</a>
+                        <a href="/terms">Terms</a>
+                        <a href="/cookies">Cookies</a>
+                    </div>
+                </div>
             </div>
-            <h3>Configuration</h3>
-            <p>Customize Swarve to fit your server's needs.</p>
-          </a>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Swarve Music. All rights reserved.</p>
+            </div>
         </div>
+    </footer>
 
-        <!-- Introduction Section -->
-        <h2 id="introduction">What is Swarve?</h2>
-        <p>
-          Swarve is a feature-rich Discord bot designed to help you manage and enhance your Discord server. Whether you
-          need powerful moderation tools, an engaging leveling system, or fun commands to keep your community
-          entertained, Swarve has you covered.
-        </p>
-
-        <div class="callout info">
-          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="16" x2="12" y2="12" />
-            <line x1="12" y1="8" x2="12.01" y2="8" />
-          </svg>
-          <div class="callout-content">
-            <h4>Note</h4>
-            <p>Swarve uses slash commands by default. You can still use traditional prefix commands by setting a custom
-              prefix.</p>
-          </div>
-        </div>
-
-        <h3>Key Features</h3>
-        <ul>
-          <li><strong>Moderation</strong> - Ban, kick, mute, warn, and manage your server with ease</li>
-          <li><strong>Leveling System</strong> - Engage your community with XP and level rewards</li>
-          <li><strong>Music Player</strong> - High-quality music playback with queue management</li>
-          <li><strong>Auto Moderation</strong> - Automatically filter spam, links, and inappropriate content</li>
-          <li><strong>Welcome Messages</strong> - Greet new members with customizable welcome messages</li>
-          <li><strong>Custom Commands</strong> - Create your own commands for your server</li>
-          <li><strong>Economy System</strong> - Manage coins, balances, and rewards in your server</li>
-        </ul>
-
-        <!-- Quick Start Section -->
-        <h2 id="quick-start">Quick Start Guide</h2>
-        <p>
-          Follow these simple steps to get Swarve up and running on your Discord server in just a few minutes.
-        </p>
-
-        <ol class="steps">
-          <li class="step">
-            <h4>Invite Swarve to your server</h4>
-            <p>Click the "Add to Server" button and select the server you want to add Swarve to. Make sure you have the
-              <strong>Manage Server</strong> permission.</p>
-          </li>
-          <li class="step">
-            <h4>Grant the necessary permissions</h4>
-            <p>Swarve requires certain permissions to function properly. We recommend granting Administrator permissions
-              for full functionality.</p>
-          </li>
-          <li class="step">
-            <h4>Configure basic settings</h4>
-            <p>Use the <code>/setup</code> command to run the interactive setup wizard, or configure settings manually
-              with <code>/config</code>.</p>
-          </li>
-          <li class="step">
-            <h4>Start using commands</h4>
-            <p>You're all set! Use <code>/help</code> to see all available commands or explore the <a
-                href="commands.html">Commands page</a>.</p>
-          </li>
-        </ol>
-
-        <!-- Installation Section -->
-        <h2 id="installation">Installation</h2>
-        <p>
-          Adding Swarve to your server is straightforward. Follow the steps below to invite the bot.
-        </p>
-
-        <h3>Required Permissions</h3>
-        <p>For full functionality, Swarve needs the following permissions:</p>
-
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Permission</th>
-                <th>Required For</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Manage Messages</td>
-                <td>Moderation commands, auto-mod</td>
-              </tr>
-              <tr>
-                <td>Kick Members</td>
-                <td>Kick command</td>
-              </tr>
-              <tr>
-                <td>Ban Members</td>
-                <td>Ban and unban commands</td>
-              </tr>
-              <tr>
-                <td>Manage Roles</td>
-                <td>Mute, leveling rewards</td>
-              </tr>
-              <tr>
-                <td>Manage Channels</td>
-                <td>Lockdown, slowmode</td>
-              </tr>
-              <tr>
-                <td>Connect & Speak</td>
-                <td>Music playback</td>
-              </tr>
-              <tr>
-                <td>Send Messages</td>
-                <td>All bot responses</td>
-              </tr>
-              <tr>
-                <td>Embed Links</td>
-                <td>Rich embed messages</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="callout warning">
-          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-            <line x1="12" y1="9" x2="12" y2="13" />
-            <line x1="12" y1="17" x2="12.01" y2="17" />
-          </svg>
-          <div class="callout-content">
-            <h4>Warning</h4>
-            <p>Make sure Swarve's role is positioned above the roles you want it to manage. Discord's role hierarchy
-              affects what actions the bot can perform.</p>
-          </div>
-        </div>
-
-        <!-- Bot Settings Section -->
-        <h2 id="bot-settings">Bot Settings</h2>
-        <p>
-          Customize Swarve's behavior using the configuration commands. All settings are server-specific.
-        </p>
-
-        <h3>Configuration Command</h3>
-        <p>Use the <code>/config</code> command to access all bot settings:</p>
-
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># View current configuration</span>
-/config view
-</code></pre>
-        </div>
-
-        <!-- Permissions Section -->
-        <h2 id="permissions">Permission System</h2>
-        <p>
-          Swarve uses a flexible permission system that allows you to control who can use specific commands.
-        </p>
-
-        <h3>Permission Levels</h3>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Level</th>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>0</td>
-                <td>User</td>
-                <td>Basic commands available to everyone</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Moderator</td>
-                <td>Moderation commands (kick, mute, warn)</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Administrator</td>
-                <td>Server management commands</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Server Owner</td>
-                <td>Full access to all commands</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- <h3>Setting Up Mod Roles</h3>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># Add a moderator role</span>
-/permissions add-mod <span class="token-variable">@Moderator</span>
-
-<span class="token-comment"># Add an admin role</span>
-/permissions add-admin <span class="token-variable">@Admin</span>
-
-<span class="token-comment"># View all permission roles</span>
-/permissions list</code></pre>
-        </div>
-
-         Custom Prefix Section 
-        <h2 id="prefix">Custom Prefix</h2>
-        <p>
-          While Swarve primarily uses slash commands, you can set a custom prefix for traditional text commands.
-        </p>
-
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># Set a custom prefix</span>
-/config prefix <span class="token-string">!</span>
-
-<span class="token-comment"># Now you can use:</span>
-<span class="token-variable">!help</span>
-<span class="token-variable">!ban @user</span>
-<span class="token-variable">!play song name</span></code></pre>
-        </div> -->
-
-        <!-- <div class="callout success">
-          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>
-          <div class="callout-content">
-            <h4>Tip</h4>
-            <p>You can mention Swarve as a prefix too! <code>@Swarve help</code> will always work regardless of your custom prefix.</p>
-          </div>
-        </div> -->
-
-        <!-- Channel Setup Section -->
-        <!-- <h2 id="channels">Channel Setup</h2>
-        <p>
-          Configure specific channels for different bot functions to keep your server organized.
-        </p>
-
-        <h3>Available Channel Types</h3>
-
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># Set moderation logs channel</span>
-/config logs <span class="token-variable">#mod-logs</span>
-
-<span class="token-comment"># Set welcome channel</span>
-/config welcome channel <span class="token-variable">#welcome</span>
-
-<span class="token-comment"># Set level-up announcements channel</span>
-/config leveling channel <span class="token-variable">#level-ups</span>
-
-<span class="token-comment"># Set music command channel (optional)</span>
-/config music channel <span class="token-variable">#music-commands</span></code></pre> -->
-
-
-        <!-- Moderation Section -->
-        <h2 id="moderation">Moderation</h2>
-        <p>
-          Swarve provides a comprehensive set of moderation tools to help you manage your server effectively.
-        </p>
-
-        <h3>Quick Reference</h3>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Command</th>
-                <th>Description</th>
-                <th>Permission</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>/ban</code></td>
-                <td>Ban a user from the server</td>
-                <td>Ban Members</td>
-              </tr>
-              <tr>
-                <td><code>/kick</code></td>
-                <td>Kick a user from the server</td>
-                <td>Kick Members</td>
-              </tr>
-              <tr>
-                <td><code>/mute</code></td>
-                <td>Timeout a user</td>
-                <td>Moderate Members</td>
-              </tr>
-              <tr>
-                <td><code>/warn</code></td>
-                <td>Issue a warning to a user</td>
-                <td>Moderator</td>
-              </tr>
-              <tr>
-                <td><code>/purge</code></td>
-                <td>Delete multiple messages</td>
-                <td>Manage Messages</td>
-              </tr>
-              <tr>
-                <td><code>/lock</code></td>
-                <td>Lock a channel</td>
-                <td>Manage Channels</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Example: Banning a User</h3>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># Ban with reason</span>
-/ban user:<span class="token-variable">@BadUser</span> reason:<span class="token-string">"Spamming in chat"</span>
-
-<span class="token-comment"># Temporary ban (24 hours)</span>
-/tempban user:<span class="token-variable">@BadUser</span> duration:<span class="token-string">24h</span> reason:<span class="token-string">"Cooling off period"</span></code></pre>
-        </div>
-
-        <!-- 
-        <h2 id="leveling">Leveling System</h2>
-        <p>
-          Engage your community with Swarve's XP-based leveling system. Members earn XP by chatting and can unlock
-          special roles as rewards.
-        </p>
-
-        <h3>Setting Up Leveling</h3>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># Enable leveling</span>
-/config leveling <span class="token-keyword">enable</span>
-
-<span class="token-comment"># Set announcement channel</span>
-/config leveling channel <span class="token-variable">#level-ups</span>
-
-<span class="token-comment"># Add a level reward</span>
-/leveling reward add level:<span class="token-number">10</span> role:<span class="token-variable">@Active Member</span>
-
-<span class="token-comment"># Set XP rate (multiplier)</span>
-/leveling xp-rate <span class="token-number">1.5</span>
-
-<span class="token-comment"># Exclude a channel from XP</span>
-/leveling ignore <span class="token-variable">#spam-channel</span></code></pre>
-        </div>
-
-        <h3>Leveling Commands</h3>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Command</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>/rank</code></td>
-                <td>View your current level and XP</td>
-              </tr>
-              <tr>
-                <td><code>/leaderboard</code></td>
-                <td>View the server leaderboard</td>
-              </tr>
-              <tr>
-                <td><code>/rewards</code></td>
-                <td>View available level rewards</td>
-              </tr>
-            </tbody>
-          </table>
-        </div> -->
-
-        <!-- Music Section -->
-        <!-- <h2 id="music">Music Player</h2>
-        <p>
-          Play high-quality music in your voice channels with Swarve's built-in music player.
-        </p>
-
-        <h3>Supported Sources</h3>
-        <ul>
-          <li>YouTube (videos and playlists)</li>
-          <li>Spotify (tracks, albums, and playlists)</li>
-          <li>SoundCloud</li>
-          <li>Direct URLs (MP3, etc.)</li>
-        </ul>
-
-        <h3>Music Commands</h3>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># Play a song</span>
-/play query:<span class="token-string">"Never Gonna Give You Up"</span>
-
-<span class="token-comment"># Play from URL</span>
-/play query:<span class="token-string">https://youtube.com/watch?v=...</span>
-
-<span class="token-comment"># Queue management</span>
-/queue          <span class="token-comment"># View queue</span>
-/skip           <span class="token-comment"># Skip current song</span>
-/pause          <span class="token-comment"># Pause playback</span>
-/resume         <span class="token-comment"># Resume playback</span>
-/stop           <span class="token-comment"># Stop and clear queue</span>
-
-<span class="token-comment"># Volume control</span>
-/volume <span class="token-number">50</span>      <span class="token-comment"># Set volume to 50%</span>
-
-<span class="token-comment"># Loop modes</span>
-/loop track     <span class="token-comment"># Loop current track</span>
-/loop queue     <span class="token-comment"># Loop entire queue</span>
-/loop off       <span class="token-comment"># Disable loop</span></code></pre> -->
-        
-
-        <!-- Welcome Messages Section -->
-        <!-- <h2 id="welcome">Welcome Messages</h2>
-        <p>
-          Greet new members with customizable welcome messages when they join your server.
-        </p>
-
-        <h3>Setting Up Welcome Messages</h3>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># Enable welcome messages</span>
-/welcome <span class="token-keyword">enable</span>
-
-<span class="token-comment"># Set welcome channel</span>
-/welcome channel <span class="token-variable">#welcome</span>
-
-<span class="token-comment"># Set custom message</span>
-/welcome message <span class="token-string">"Welcome to the server, {user}! 🎉"</span>
-
-<span class="token-comment"># Enable welcome image</span>
-/welcome image <span class="token-keyword">enable</span></code></pre>
-        </div>
-
-        <h3>Available Variables</h3>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Variable</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>{user}</code></td>
-                <td>Mentions the new member</td>
-              </tr>
-              <tr>
-                <td><code>{username}</code></td>
-                <td>The member's username</td>
-              </tr>
-              <tr>
-                <td><code>{server}</code></td>
-                <td>The server name</td>
-              </tr>
-              <tr>
-                <td><code>{membercount}</code></td>
-                <td>Total member count</td>
-              </tr>
-            </tbody>
-          </table>
-        </div> -->
-
-        <!-- Auto Moderation Section -->
-        <h2 id="automod">Auto Moderation</h2>
-        <p>
-          Automatically protect your server from spam, inappropriate content, and unwanted links.
-        </p>
-
-        <div class="callout info">
-          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="16" x2="12" y2="12" />
-            <line x1="12" y1="8" x2="12.01" y2="8" />
-          </svg>
-          <div class="callout-content">
-            <h4>New Feature</h4>
-            <p>Auto Moderation is a new feature in Swarve v2.0. Some options may change in future updates.</p>
-          </div>
-        </div>
-
-        <h3>Auto-Mod Features</h3>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># Add a word to the blacklist</span>
-/automod_blacklist_add <span class="token-keyword">insult</span>
-
-<span class="token-comment"># Remove a word from the blacklist</span>
-/automod_blacklist_remove <span class="token-keyword">insult</span>
-
-<span class="token-comment"># Show the server blacklist</span>
-/automod_blacklist_list
-</code></pre>
-
-        </div>
-
-        <!-- Custom Commands Section -->
-        <!-- <h2 id="custom-commands">Custom Commands</h2>
-        <p>
-          Create your own custom commands to display information, rules, or anything else your server needs.
-        </p>
-
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot bash"></span>
-              Commands
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-comment"># Create a simple command</span>
-/custom create name:<span class="token-string">rules</span> response:<span class="token-string">"Please read our rules in #rules!"</span>
-
-<span class="token-comment"># Create an embed command</span>
-/custom create name:<span class="token-string">info</span> embed:<span class="token-keyword">true</span> title:<span class="token-string">"Server Info"</span> response:<span class="token-string">"Welcome to our server!"</span>
-
-<span class="token-comment"># Delete a custom command</span>
-/custom delete name:<span class="token-string">rules</span>
-
-<span class="token-comment"># List all custom commands</span>
-/custom list</code></pre>
-        </div> -->
-
-        <!-- API Overview Section -->
-        <!-- <h2 id="api-overview">API Overview</h2>
-        <p>
-          Swarve provides a REST API for advanced integrations with your own applications.
-        </p>
-
-        <div class="callout danger">
-          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="15" y1="9" x2="9" y2="15" />
-            <line x1="9" y1="9" x2="15" y2="15" />
-          </svg>
-          <div class="callout-content">
-            <h4>Important</h4>
-            <p>Never share your API token with anyone. It provides full access to your server's bot data.</p>
-          </div>
-        </div>
-
-        <h3>Authentication</h3>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">
-              <span class="code-lang-dot js"></span>
-              JavaScript
-            </span>
-            <button class="code-copy" onclick="copyCode(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              Copy
-            </button>
-          </div>
-          <pre><code><span class="token-keyword">const</span> <span class="token-variable">response</span> <span class="token-operator">=</span> <span class="token-keyword">await</span> <span class="token-function">fetch</span>(<span class="token-string">'https://api.swarve.bot/v1/servers'</span>, {
-  <span class="token-property">headers</span>: {
-    <span class="token-string">'Authorization'</span>: <span class="token-string">`Bearer ${YOUR_API_TOKEN}`</span>,
-    <span class="token-string">'Content-Type'</span>: <span class="token-string">'application/json'</span>
-  }
-});
-
-<span class="token-keyword">const</span> <span class="token-variable">data</span> <span class="token-operator">=</span> <span class="token-keyword">await</span> <span class="token-variable">response</span>.<span class="token-function">json</span>();
-<span class="token-builtin">console</span>.<span class="token-function">log</span>(<span class="token-variable">data</span>);</code></pre>
-        </div> -->
-
-        <!-- FAQ Section -->
-<section id="faq">
-  <h2>Frequently Asked Questions</h2>
-
-  <div class="faq-item">
-    <h3>Why isn't Swarve responding to commands?</h3>
-    <p>
-      Make sure Swarve has the necessary permissions and can see the channel you're using. Also verify that your
-      role is above Swarve's role in the hierarchy if using moderation commands.
-    </p>
-  </div>
-
-  <!-- <div class="faq-item">
-    <h3>How do I reset all settings?</h3>
-    <p>
-      Use <code>/config reset</code> to reset all bot settings to their defaults. This action cannot be undone.
-    </p>
-  </div> -->
-
-  <div class="faq-item">
-    <h3>Can I use Swarve on multiple servers?</h3>
-    <p>
-      Yes! Swarve can be added to as many servers as you want. Each server has its own independent configuration.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h3>Is there a premium version?</h3>
-    <p>
-      Swarve Premium unlocks additional features like custom welcome images, more auto-mod options, and priority
-      support. Visit our website to learn more.
-    </p>
-  </div>
-</section>
-
-
-        <!-- Feedback Section -->
-        <div class="feedback-section">
-          <h4>Was this page helpful?</h4>
-          <p>Let us know how we can improve our documentation.</p>
-          <div class="feedback-buttons">
-            <button class="feedback-btn" onclick="selectFeedback(this, 'yes')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-              </svg>
-              Yes
-            </button>
-            <button class="feedback-btn" onclick="selectFeedback(this, 'no')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" />
-              </svg>
-              No
-            </button>
-          </div>
-        </div>
-
-        <!-- Page Navigation -->
-        <div class="page-nav">
-          <a href="#" class="page-nav-link prev">
-            <span class="page-nav-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-              Previous
-            </span>
-            <span class="page-nav-title">Home</span>
-          </a>
-          <a href="https://swarve.xyz/commands" class="page-nav-link next">
-            <span class="page-nav-label">
-              Next
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </span>
-            <span class="page-nav-title">Commands</span>
-          </a>
-        </div>
-      </div>
-    </main>
-
-    <!-- Table of Contents -->
-    <aside class="toc" id="toc">
-      <div class="toc-title">On This Page</div>
-      <ul class="toc-links">
-        <li><a href="#introduction" class="active">What is Swarve?</a></li>
-        <li><a href="#quick-start">Quick Start Guide</a></li>
-        <li><a href="#installation">Installation</a></li>
-        <li><a href="#bot-settings">Bot Settings</a></li>
-        <li><a href="#permissions">Permission System</a></li>
-        <!-- <li><a href="#prefix">Custom Prefix</a></li>
-        <li><a href="#channels">Channel Setup</a></li> -->
-        <li><a href="#moderation">Moderation</a></li>
-        <!-- <li><a href="#leveling">Leveling System</a></li>
-        <li><a href="#music">Music Player</a></li>
-        <li><a href="#welcome">Welcome Messages</a></li> -->
-        <li><a href="#automod">Auto Moderation</a></li>
-        <!-- <li><a href="#custom-commands">Custom Commands</a></li>
-        <li><a href="#api-overview">API Overview</a></li> -->
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-    </aside>
-  </div>
-
-  <script>
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
-
-    mobileMenuBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
-      sidebarOverlay.classList.toggle('active');
-    });
-
-    sidebarOverlay.addEventListener('click', () => {
-      sidebar.classList.remove('active');
-      sidebarOverlay.classList.remove('active');
-    });
-
-    // Search modal
-    const searchInput = document.getElementById('searchInput');
-    const searchModal = document.getElementById('searchModal');
-    const modalSearchInput = document.getElementById('modalSearchInput');
-
-    searchInput.addEventListener('click', () => {
-      searchModal.classList.add('active');
-      setTimeout(() => modalSearchInput.focus(), 100);
-    });
-
-    searchModal.addEventListener('click', (e) => {
-      if (e.target === searchModal) {
-        searchModal.classList.remove('active');
-      }
-    });
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        searchModal.classList.add('active');
-        setTimeout(() => modalSearchInput.focus(), 100);
-      }
-      if (e.key === 'Escape') {
-        searchModal.classList.remove('active');
-      }
-    });
-
-    // Copy code functionality
-    function copyCode(button) {
-      const codeBlock = button.closest('.code-block').querySelector('pre code');
-      const text = codeBlock.innerText;
-
-      navigator.clipboard.writeText(text).then(() => {
-        button.classList.add('copied');
-        button.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          Copied!
-        `;
-
-        setTimeout(() => {
-          button.classList.remove('copied');
-          button.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-            </svg>
-            Copy
-          `;
-        }, 2000);
-      });
-    }
-
-    // Progress bar
-    const progressBar = document.getElementById('progressBar');
-
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
-      progressBar.style.width = `${progress}%`;
-    });
-
-    // Active TOC link
-    const tocLinks = document.querySelectorAll('.toc-links a');
-    const sections = document.querySelectorAll('h2[id], h3[id]');
-
-    function updateActiveTocLink() {
-      let currentSection = '';
-
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (window.scrollY >= sectionTop) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-
-      tocLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-          link.classList.add('active');
-        }
-      });
-    }
-
-    // Active sidebar link
-    const sidebarLinks = document.querySelectorAll('.sidebar-links a');
-
-    function updateActiveSidebarLink() {
-      let currentSection = '';
-
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (window.scrollY >= sectionTop) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-
-      sidebarLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-          link.classList.add('active');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', () => {
-      updateActiveTocLink();
-      updateActiveSidebarLink();
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-
-          // Close mobile sidebar if open
-          sidebar.classList.remove('active');
-          sidebarOverlay.classList.remove('active');
-        }
-      });
-    });
-
-    // Feedback buttons
-    function selectFeedback(button, type) {
-      const buttons = document.querySelectorAll('.feedback-btn');
-      buttons.forEach(btn => btn.classList.remove('selected'));
-      button.classList.add('selected');
-    }
-
-    // Intersection Observer for animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.animate-in, .code-block, .callout, .table-wrapper').forEach(el => {
-      el.style.animationPlayState = 'paused';
-      observer.observe(el);
-    });
-
-    // Search functionality
-    const searchResults = document.getElementById('searchResults');
-    const searchData = [
-      { title: 'Getting Started', desc: 'Quick setup guide for Swarve bot', href: '#introduction', icon: 'doc' },
-      { title: 'Quick Start', desc: 'Get Swarve running in 5 minutes', href: '#quick-start', icon: 'bolt' },
-      { title: 'Installation', desc: 'Add Swarve to your server', href: '#installation', icon: 'download' },
-      { title: 'Bot Settings', desc: 'Configure Swarve behavior', href: '#bot-settings', icon: 'settings' },
-      { title: 'Permissions', desc: 'Set up permission levels', href: '#permissions', icon: 'shield' },
-      //{ title: 'Custom Prefix', desc: 'Change command prefix', href: '#prefix', icon: 'text' },
-      //{ title: 'Channel Setup', desc: 'Configure bot channels', href: '#channels', icon: 'chat' },
-      { title: 'Moderation', desc: 'Ban, kick, mute commands', href: '#moderation', icon: 'shield' },
-      //{ title: 'Leveling System', desc: 'XP and level rewards', href: '#leveling', icon: 'chart' },
-      //{ title: 'Music Player', desc: 'Play music in voice channels', href: '#music', icon: 'music' },
-      //{ title: 'Welcome Messages', desc: 'Greet new members', href: '#welcome', icon: 'user' },
-      { title: 'Auto Moderation', desc: 'Automatic spam protection', href: '#automod', icon: 'wind' },
-      //{ title: 'Custom Commands', desc: 'Create your own commands', href: '#custom-commands', icon: 'code' },
-      //{ title: 'API Overview', desc: 'REST API documentation', href: '#api-overview', icon: 'monitor' },
-      { title: 'FAQ', desc: 'Frequently asked questions', href: '#faq', icon: 'help' },
-      { title: 'Commands Reference', desc: 'All bot commands', href: 'https://swarve.xyz/commands', icon: 'code' }
-    ];
-
-    const iconMap = {
-      doc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
-      bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
-      download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
-      settings: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
-      shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-      text: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>',
-      chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
-      chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
-      music: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/><path d="M8 17V5l12-2v12"/></svg>',
-      user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
-      wind: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>',
-      code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
-      monitor: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
-      help: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
-    };
-
-    let selectedIndex = 0;
-
-    modalSearchInput.addEventListener('input', (e) => {
-      const query = e.target.value.toLowerCase();
-      let filtered = searchData;
-
-      if (query) {
-        filtered = searchData.filter(item =>
-          item.title.toLowerCase().includes(query) ||
-          item.desc.toLowerCase().includes(query)
-        );
-      }
-
-      selectedIndex = 0;
-      renderSearchResults(filtered);
-    });
-
-    function renderSearchResults(results) {
-      if (results.length === 0) {
-        searchResults.innerHTML = '<div class="search-empty">No results found</div>';
-        return;
-      }
-
-      searchResults.innerHTML = results.map((item, index) => `
-        <div class="search-result${index === selectedIndex ? ' selected' : ''}" data-href="${item.href}">
-          <div class="search-result-icon">${iconMap[item.icon]}</div>
-          <div class="search-result-text">
-            <h4>${item.title}</h4>
-            <p>${item.desc}</p>
-          </div>
-        </div>
-      `).join('');
-
-      // Add click handlers
-      document.querySelectorAll('.search-result').forEach(result => {
-        result.addEventListener('click', () => {
-          const href = result.dataset.href;
-          if (href.startsWith('#')) {
-            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-          } else {
-            window.location.href = href;
-          }
-          searchModal.classList.remove('active');
-        });
-      });
-    }
-
-    // Keyboard navigation for search
-    modalSearchInput.addEventListener('keydown', (e) => {
-      const results = document.querySelectorAll('.search-result');
-
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        selectedIndex = Math.min(selectedIndex + 1, results.length - 1);
-        updateSelectedResult(results);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        selectedIndex = Math.max(selectedIndex - 1, 0);
-        updateSelectedResult(results);
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        const selected = results[selectedIndex];
-        if (selected) {
-          selected.click();
-        }
-      }
-    });
-
-    function updateSelectedResult(results) {
-      results.forEach((result, index) => {
-        result.classList.toggle('selected', index === selectedIndex);
-      });
-    }
-
-    // Initialize search results
-    renderSearchResults(searchData);
-  </script>
+    <script src="script.js"></script>
+    <script src="docs.js"></script>
 </body>
-
 </html>

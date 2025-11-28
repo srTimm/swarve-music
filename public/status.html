@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Updated to English with Swarve Music branding -->
+    <title>Status - Swarve Music</title>
+    <meta name="description" content="Current status of Swarve Music services.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">
+                
+                <span>Swarve Music</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/commands">Commands</a></li>
+                <li><a href="/docs">Documentation</a></li>
+                <li><a href="/status" class="active">Status</a></li>
+                <li><a href="/team">Team</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="https://discord.com/invite/NnDvs4umXE" class="btn btn-ghost" target="_blank">Support</a>
+                <a href="https://discord.com/oauth2/authorize?client_id=1443714462942105692&permissions=321888671960896&integration_type=0&scope=applications.commands+bot" class="btn btn-primary">Invite Bot</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>System Status</h1>
+            <p>Real-time monitoring of all Swarve Music services</p>
+        </div>
+    </section>
+
+    <section class="status-overview">
+        <div class="container">
+            <div class="status-banner operational">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">All Systems Operational</span>
+                </div>
+                <span class="status-updated">Updated 2 minutes ago</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="status-metrics">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </div>
+                    <div class="metric-info">
+                        <span class="metric-value">99.9%</span>
+                        <span class="metric-label">Uptime (30 days)</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div class="metric-info">
+                        <span class="metric-value">45ms</span>
+                        <span class="metric-label">Average Latency</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <div class="metric-info">
+                        <span class="metric-value">5+</span>
+                        <span class="metric-label">Active Servers</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <div class="metric-info">
+                        <span class="metric-value">1K+</span>
+                        <span class="metric-label">Total Users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-status">
+        <div class="container">
+            <h2 class="section-title-left">Service Status</h2>
+            
+            <div class="services-list">
+                <div class="service-item">
+                    <div class="service-info">
+                        <span class="service-status operational"></span>
+                        <span class="service-name">Main Bot</span>
+                    </div>
+                    <span class="service-status-text operational">Operational</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-info">
+                        <span class="service-status operational"></span>
+                        <span class="service-name">Audio Playback</span>
+                    </div>
+                    <span class="service-status-text operational">Operational</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-info">
+                        <span class="service-status operational"></span>
+                        <span class="service-name">Commands API</span>
+                    </div>
+                    <span class="service-status-text operational">Operational</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-info">
+                        <span class="service-status operational"></span>
+                        <span class="service-name">Database</span>
+                    </div>
+                    <span class="service-status-text operational">Operational</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-info">
+                        <span class="service-status operational"></span>
+                        <span class="service-name">YouTube Integration</span>
+                    </div>
+                    <span class="service-status-text operational">Operational</span>
+                </div>
+                <!-- <div class="service-item">
+                    <div class="service-info">
+                        <span class="service-status operational"></span>
+                        <span class="service-name">Spotify Integration</span>
+                    </div>
+                    <span class="service-status-text operational">Operational</span>
+                </div> -->
+                <div class="service-item">
+                    <div class="service-info">
+                        <span class="service-status operational"></span>
+                        <span class="service-name">SoundCloud Integration</span>
+                    </div>
+                    <span class="service-status-text operational">Operational</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-info">
+                        <span class="service-status operational"></span>
+                        <span class="service-name">Lyrics API</span>
+                    </div>
+                    <span class="service-status-text operational">Operational</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="uptime-section">
+        <div class="container">
+            <h2 class="section-title-left">Uptime History (90 days)</h2>
+            <div class="uptime-graph">
+                <div class="uptime-bars" id="uptimeBars"></div>
+                <div class="uptime-legend">
+                    <span>90 days ago</span>
+                    <span>Today</span>
+                </div>
+            </div>
+            <div class="uptime-stats">
+                <div class="uptime-stat">
+                    <span class="uptime-stat-value">99.95%</span>
+                    <span class="uptime-stat-label">Total Uptime</span>
+                </div>
+                <div class="uptime-stat">
+                    <span class="uptime-stat-value">0</span>
+                    <span class="uptime-stat-label">Incidents This Month</span>
+                </div>
+                <div class="uptime-stat">
+                    <span class="uptime-stat-value">4h 23m</span>
+                    <span class="uptime-stat-label">Total Downtime</span>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="incidents-section">
+        <div class="container">
+            <h2 class="section-title-left">Recent Incidents</h2>
+            
+            <div class="incidents-list">
+                <!-- <div class="incident-item resolved">
+                    <div class="incident-header">
+                        <div class="incident-status">
+                            <span class="incident-dot"></span>
+                            <span>Resolved</span>
+                        </div>
+                        <span class="incident-date">Nov 15, 2025</span>
+                    </div>
+                    <h3 class="incident-title">Scheduled Maintenance</h3>
+                    <p class="incident-description">Server update to improve performance. Downtime: 15 minutes.</p>
+                    <div class="incident-timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-time">14:00</span>
+                            <span class="timeline-text">Maintenance started</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-time">14:15</span>
+                            <span class="timeline-text">Maintenance completed - All services restored</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="incident-item resolved">
+                    <div class="incident-header">
+                        <div class="incident-status">
+                            <span class="incident-dot"></span>
+                            <span>Resolved</span>
+                        </div>
+                        <span class="incident-date">Nov 2, 2025</span>
+                    </div>
+                    <h3 class="incident-title">Elevated Playback Latency</h3>
+                    <p class="incident-description">Some users experienced high latency when playing music. The issue was identified and resolved.</p>
+                    <div class="incident-timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-time">09:30</span>
+                            <span class="timeline-text">Issue detected</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-time">09:45</span>
+                            <span class="timeline-text">Cause identified - Audio node overload</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-time">10:00</span>
+                            <span class="timeline-text">Issue resolved - Traffic redistributed</span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="no-incidents">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <p>No active incidents at this time</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="subscribe-section">
+        <div class="container">
+            <div class="subscribe-card">
+                <div class="subscribe-content">
+                    <h3>Get Status Notifications</h3>
+                    <p>Subscribe to receive alerts when there are incidents or scheduled maintenance.</p>
+                </div>
+                <div class="subscribe-form">
+                    <input type="email" placeholder="your@email.com" class="subscribe-input">
+                    <button class="btn btn-primary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        
+                        <span>Swarve Music</span>
+                    </a>
+                    <!-- Footer to English -->
+                    <p>The most complete and reliable music bot for your Discord server.</p>
+                    <div class="social-links">
+                        <a href="https://discord.com/invite/NnDvs4umXE" aria-label="Discord">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+                        </a>
+                        <a href="https://x.com/diegoodev_" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/srTimm/swarve-music" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="/commands">Commands</a>
+                        <a href="/docs">Documentation</a>
+                        <a href="/status">Status</a>
+                        <a href="/changelog">Changelog</a>
+                        <a href="https://swarve.xyz/embed">Embed Builder</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="/blog">Blog</a>
+                        <a href="/team">Team</a>
+                        <a href="https://discord.com/invite/NnDvs4umXE" target="_blank">Support</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="/privacy">Privacy</a>
+                        <a href="/terms">Terms</a>
+                        <a href="/cookies">Cookies</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Swarve Music. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="status.js"></script>
+</body>
+</html>
