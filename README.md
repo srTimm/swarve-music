@@ -1,7 +1,7 @@
 # 🎶 Swarve Music Bot
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Discord Server](https://img.shields.io/discord/XXXXXX?label=Discord&logo=discord&color=7289DA)](https://discord.gg/YOUR_INVITE_LINK)
+[![Discord Server](https://img.shields.io/discord/XXXXXX?label=Discord&logo=discord&color=7289DA)](https://discord.com/invite/NnDvs4umXE)
 [![Node.js Version](https://img.shields.io/badge/Node.js-%3E%3D16-green.svg)](https://nodejs.org/)
 
 Swarve Music is a **minimalist, powerful, and open-source** music bot for Discord, designed to provide a high-quality audio playback experience with maximum stability. We use **Lavalink** for audio management, ensuring seamless and interruption-free performance.
