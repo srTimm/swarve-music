@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarve Team - Meet the Team Behind the Magic</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<style>
+    /* ============================================
+   SWARVE TEAM PAGE - STYLES
+   ============================================ */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary: #5865f2;
+        --primary-hover: #4752c4;
+        --primary-glow: rgba(88, 101, 242, 0.4);
+        --bg-dark: #0a0a0f;
+        --bg-card: #12121a;
+        --bg-card-hover: #1a1a25;
+        --border-color: rgba(255, 255, 255, 0.08);
+        --text-primary: #ffffff;
+        --text-secondary: #9ca3af;
+        --text-muted: #6b7280;
+        --founder-color: #fbbf24;
+        --dev-color: #60a5fa;
+        --staff-color: #34d399;
+        --gradient: linear-gradient(135deg, #5865f2 0%, #8b5cf6 100%);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg-dark);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    /* Background Effects */
+    .bg-glow {
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at 30% 20%, rgba(88, 101, 242, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: -2;
+    }
+
+    .bg-grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    /* Navigation */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem 2rem;
+        background: rgba(10, 10, 15, 0.8);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 1000;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: var(--text-primary);
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--gradient);
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .logo-icon::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 12px;
+        height: 12px;
+        background: var(--bg-dark);
+        border-radius: 50%;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        color: var(--text-primary);
+    }
+
+    /* Buttons */
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px var(--primary-glow);
+    }
+
+    .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        background: transparent;
+        color: var(--text-primary);
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-large {
+        padding: 0.875rem 1.75rem;
+        font-size: 1rem;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .mobile-menu-btn span {
+        width: 24px;
+        height: 2px;
+        background: var(--text-primary);
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        z-index: 999;
+    }
+
+    .mobile-menu a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .mobile-menu.active {
+        display: flex;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 8rem 2rem 4rem;
+        position: relative;
+    }
+
+    .hero-content {
+        max-width: 800px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: 100px;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+    }
+
+    .badge-dot {
+        width: 8px;
+        height: 8px;
+        background: #22c55e;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    .gradient-text {
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    /* Stats Section */
+    .stats {
+        padding: 4rem 2rem;
+        background: linear-gradient(180deg, transparent 0%, rgba(18, 18, 26, 0.5) 50%, transparent 100%);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .stats-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-number {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Team Section */
+    .team {
+        padding: 6rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .section-header p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+    }
+
+    .team-category {
+        margin-bottom: 4rem;
+    }
+
+    .category-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .category-icon {
+        font-size: 1.5rem;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .founder-grid {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Team Cards */
+    .team-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+    }
+
+    .team-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(88, 101, 242, 0.3);
+        background: var(--bg-card-hover);
+    }
+
+    .team-card:hover .card-glow {
+        opacity: 1;
+    }
+
+    .card-glow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: linear-gradient(180deg, var(--primary-glow) 0%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .founder-card {
+        background: linear-gradient(135deg, rgba(251, 191, 36, 0.05) 0%, var(--bg-card) 100%);
+    }
+
+    .founder-card:hover {
+        border-color: rgba(251, 191, 36, 0.3);
+    }
+
+    .member-avatar {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 1.5rem;
+    }
+
+    .founder-avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .member-avatar img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        position: relative;
+        z-index: 2;
+    }
+
+    .avatar-ring {
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+        border-radius: 50%;
+        background: var(--gradient);
+        z-index: 1;
+        animation: rotate 4s linear infinite;
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .founder-card .avatar-ring {
+        background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    }
+
+    .status-indicator {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 3px solid var(--bg-card);
+        z-index: 3;
+    }
+
+    .status-indicator.online {
+        background: #22c55e;
+    }
+
+    .status-indicator.idle {
+        background: #fbbf24;
+    }
+
+    .status-indicator.dnd {
+        background: #ef4444;
+    }
+
+    .status-indicator.offline {
+        background: #6b7280;
+    }
+
+    .member-info {
+        text-align: center;
+    }
+
+    .member-info h4 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .role {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .founder-role {
+        background: rgba(251, 191, 36, 0.15);
+        color: #fbbf24;
+    }
+
+    .dev-role {
+        background: rgba(96, 165, 250, 0.15);
+        color: #60a5fa;
+    }
+
+    .staff-role {
+        background: rgba(52, 211, 153, 0.15);
+        color: #34d399;
+    }
+
+    .member-bio {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .member-socials {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-secondary);
+        transition: all 0.3s ease;
+    }
+
+    .social-link svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .social-link:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* About Section */
+    .about {
+        padding: 6rem 2rem;
+        background: linear-gradient(180deg, transparent 0%, rgba(18, 18, 26, 0.5) 50%, transparent 100%);
+    }
+
+    .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .about-content h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    .about-content p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+    }
+
+    .about-features {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .about-feature {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 100px;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .feature-icon {
+        font-size: 1.25rem;
+    }
+
+    /* Code Window */
+    .code-window {
+        background: #1a1a2e;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .code-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 1.25rem;
+        background: rgba(0, 0, 0, 0.3);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+
+    .dot.red {
+        background: #ff5f57;
+    }
+
+    .dot.yellow {
+        background: #febc2e;
+    }
+
+    .dot.green {
+        background: #28c840;
+    }
+
+    .file-name {
+        margin-left: auto;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+
+    .code-content {
+        padding: 1.5rem;
+        font-family: "Fira Code", "Monaco", monospace;
+        font-size: 0.9rem;
+        line-height: 1.8;
+        overflow-x: auto;
+    }
+
+    .code-content code {
+        color: #e2e8f0;
+    }
+
+    .keyword {
+        color: #c792ea;
+    }
+
+    .class {
+        color: #ffcb6b;
+    }
+
+    .property {
+        color: #82aaff;
+    }
+
+    .string {
+        color: #c3e88d;
+    }
+
+    .number {
+        color: #f78c6c;
+    }
+
+    .method {
+        color: #82aaff;
+    }
+
+    .comment {
+        color: #546e7a;
+    }
+
+    /* Join Section */
+    .join {
+        padding: 6rem 2rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .join-content {
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .join h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .join p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .join-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .join-glow {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 300px;
+        background: radial-gradient(ellipse at center, var(--primary-glow) 0%, transparent 70%);
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 4rem 2rem 2rem;
+        border-top: 1px solid var(--border-color);
+        background: rgba(10, 10, 15, 0.5);
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-main {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 4rem;
+        margin-bottom: 3rem;
+    }
+
+    .footer-brand p {
+        color: var(--text-secondary);
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .footer-column h4 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .footer-column a {
+        display: block;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+        transition: color 0.3s ease;
+    }
+
+    .footer-column a:hover {
+        color: var(--text-primary);
+    }
+
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .footer-bottom p {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+    }
+
+    .footer-socials {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .about-container {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .about-visual {
+            order: -1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: flex;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+        }
+
+        .stats-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .team-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-main {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .about-features {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stats-container {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+        }
+
+        .hero-buttons {
+            flex-direction: column;
+        }
+
+        .footer-links {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .team-card {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .team-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .team-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .team-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .team-card:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .team-card:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+</style>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="https://swarve.xyz" class="logo">
+
+                <span>Swarve</span>
+            </a>
+            <div class="nav-links">
+                <a href="https://swarve.xyz">Home</a>
+                <a href="#team">Team</a>
+                <a href="/commands">Commands</a>
+                <a href="#about">About</a>
+                <a href="/docs">Documentation</a>
+                <a href="https://discord.gg/NnDvs4umXE" class="btn-outline">Support Server</a>
+                <a href="https://discord.com/oauth2/authorize?client_id=1442642756496265356&permissions=573386723373015&integration_type=0&scope=applications.commands+bot"
+                    class="btn-primary">+ Add to Discord</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="https://swarve.xyz">Home</a>
+        <a href="#team">Team</a>
+        <a href="#about">About</a>
+        <a href="https://discord.gg/NnDvs4umXE">Support Server</a>
+        <a href="https://discord.com/oauth2/authorize?client_id=1442642756496265356&permissions=573386723373015&integration_type=0&scope=applications.commands+bot"
+            class="btn-primary">+ Add to Discord</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                The people behind Swarve
+            </div>
+            <h1>Meet the <span class="gradient-text">Team</span></h1>
+            <p>Passionate developers and creators working together to build the ultimate Discord bot experience.</p>
+            <div class="hero-buttons">
+                <a href="#team" class="btn-primary btn-large">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    View Team
+                </a>
+                <a href="https://swarve.xyz" class="btn-outline btn-large">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+        <div class="hero-glow"></div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number" data-target="5">0</span>
+                <span class="stat-label">Team Members</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="5398">0</span>
+                <span class="stat-label">Users Served</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Dedication</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">Passion</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="section-header">
+            <h2>Our <span class="gradient-text">Team</span></h2>
+            <p>The talented individuals who make Swarve possible</p>
+        </div>
+
+        <!-- Founder -->
+        <div class="team-category">
+            <h3 class="category-title">
+                <span class="category-icon founder-icon">👑</span>
+                Founder
+            </h3>
+            <div class="team-grid founder-grid">
+                <div class="team-card founder-card">
+                    <div class="card-glow"></div>
+                    <div class="member-avatar founder-avatar">
+                        <img src="./G.jpg" alt="Founder Avatar">
+                        <div class="avatar-ring"></div>
+                        <div class="status-indicator online"></div>
+                    </div>
+                    <div class="member-info">
+                        <h4>Diego Muñoz</h4>
+                        <span class="role founder-role">Founder & Lead Developer</span>
+                        <p class="member-bio">Visionary behind Swarve. Building the future of Discord bots one feature
+                            at a time.</p>
+                        <div class="member-socials">
+                            <a href="https://discord.com/users/1309256088201203805" class="social-link discord"
+                                title="Discord">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+                                </svg>
+                            </a>
+                            <a href="https://github.com/srTimm" class="social-link github" title="GitHub">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                            </a>
+                            <a href="https://x.com/diegoodev_" class="social-link twitter" title="Twitter">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.swarve.lol/" class="social-link portfolio" title="Portfolio">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="7" width="20" height="15" rx="2" ry="2" />
+                                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Developers -->
+        <!-- <div class="team-category">
+            <h3 class="category-title">
+                <span class="category-icon dev-icon">⚡</span>
+                Developers
+            </h3>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="card-glow"></div>
+                    <div class="member-avatar">
+                        <img src="/placeholder.svg?height=100&width=100" alt="Developer 1">
+                        <div class="avatar-ring"></div>
+                        <div class="status-indicator online"></div>
+                    </div>
+                    <div class="member-info">
+                        <h4>CodeMaster</h4>
+                        <span class="role dev-role">Backend Developer</span>
+                        <p class="member-bio">Architecting robust systems and APIs that power Swarve.</p>
+                        <div class="member-socials">
+                            <a href="#" class="social-link discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+                            <a href="#" class="social-link github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="card-glow"></div>
+                    <div class="member-avatar">
+                        <img src="/placeholder.svg?height=100&width=100" alt="Developer 2">
+                        <div class="avatar-ring"></div>
+                        <div class="status-indicator idle"></div>
+                    </div>
+                    <div class="member-info">
+                        <h4>PixelWizard</h4>
+                        <span class="role dev-role">Frontend Developer</span>
+                        <p class="member-bio">Crafting beautiful interfaces and smooth user experiences.</p>
+                        <div class="member-socials">
+                            <a href="#" class="social-link discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+                            <a href="#" class="social-link github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Staff -->
+        <!-- <div class="team-category">
+            <h3 class="category-title">
+                <span class="category-icon staff-icon">🛡️</span>
+                Staff & Moderators
+            </h3>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="card-glow"></div>
+                    <div class="member-avatar">
+                        <img src="/placeholder.svg?height=100&width=100" alt="Staff 1">
+                        <div class="avatar-ring"></div>
+                        <div class="status-indicator online"></div>
+                    </div>
+                    <div class="member-info">
+                        <h4>Guardian</h4>
+                        <span class="role staff-role">Head Moderator</span>
+                        <p class="member-bio">Keeping the community safe and welcoming for everyone.</p>
+                        <div class="member-socials">
+                            <a href="#" class="social-link discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="card-glow"></div>
+                    <div class="member-avatar">
+                        <img src="/placeholder.svg?height=100&width=100" alt="Staff 2">
+                        <div class="avatar-ring"></div>
+                        <div class="status-indicator dnd"></div>
+                    </div>
+                    <div class="member-info">
+                        <h4>HelpDesk</h4>
+                        <span class="role staff-role">Support Lead</span>
+                        <p class="member-bio">Always here to help users get the most out of Swarve.</p>
+                        <div class="member-socials">
+                            <a href="#" class="social-link discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>Why We <span class="gradient-text">Build</span></h2>
+                <p>We're a passionate team of developers and Discord enthusiasts who believe that every server deserves
+                    powerful, easy-to-use tools. Swarve was born from our own frustrations with complex, unreliable
+                    bots.</p>
+                <p>Our mission is simple: create the most intuitive, feature-rich Discord bot that just works. No
+                    complicated setup, no downtime, no compromises.</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="feature-icon">🚀</div>
+                        <span>Innovation First</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">💜</div>
+                        <span>Community Driven</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">🔒</div>
+                        <span>Privacy Focused</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="code-window">
+                    <div class="code-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="file-name">swarve.js</span>
+                    </div>
+                    <pre class="code-content">
+<code><span class="keyword">const</span> swarve = <span class="keyword">new</span> <span class="class">Bot</span>({
+  <span class="property">passion</span>: <span class="string">'infinite'</span>,
+  <span class="property">dedication</span>: <span class="number">100</span>,
+  <span class="property">coffee</span>: <span class="string">'☕️'.repeat(999)</span>
+});
+
+swarve.<span class="method">on</span>(<span class="string">'ready'</span>, () => {
+  <span class="keyword">console</span>.<span class="method">log</span>(<span class="string">'Building awesome things!'</span>);
+});
+
+<span class="comment">// Made with 💜 by the Swarve Team</span></code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section class="join">
+        <div class="join-content">
+            <h2>Want to <span class="gradient-text">Join Us?</span></h2>
+            <p>We're always looking for talented individuals who share our passion for building amazing Discord
+                experiences.</p>
+            <div class="join-buttons">
+                <a href="https://discord.gg/NnDvs4umXE" class="btn-primary btn-large">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path
+                            d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+                    </svg>
+                    Join Our Discord
+                </a>
+            </div>
+        </div>
+        <div class="join-glow"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="https://swarve.xyz" class="logo">
+                        
+                        <span>Swarve</span>
+                    </a>
+                    <p>The ultimate bot for your Discord server.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="https://swarve.xyz#features">Features</a>
+                        <a href="https://swarve.xyz/commands">Commands</a>
+                        <a href="https://swarve.xyz/docs">Documentation</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#team">Team</a>
+                        <a href="#about">About</a>
+                        <a href="https://discord.gg/NnDvs4umXE">Support</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="https://swarve.xyz/privacy">Privacy Policy</a>
+                        <a href="https://swarve.xyz/terms">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Swarve. All rights reserved. Made with ❤️</p>
+                <div class="footer-socials">
+                    <a href="https://discord.gg/NnDvs4umXE" class="social-link"><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+                        </svg></a>
+                    <a href="https://github.com/Coconube-Software" class="social-link"><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg></a>
+                    <a href="https://x.com/diegoodev_" class="social-link"><svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // SWARVE TEAM PAGE - SCRIPTS
+        // ============================================
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn")
+            const mobileMenu = document.getElementById("mobileMenu")
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener("click", () => {
+                    mobileMenu.classList.toggle("active")
+
+                    // Animate hamburger to X
+                    const spans = mobileMenuBtn.querySelectorAll("span")
+                    if (mobileMenu.classList.contains("active")) {
+                        spans[0].style.transform = "rotate(45deg) translate(5px, 5px)"
+                        spans[1].style.opacity = "0"
+                        spans[2].style.transform = "rotate(-45deg) translate(5px, -5px)"
+                    } else {
+                        spans[0].style.transform = "none"
+                        spans[1].style.opacity = "1"
+                        spans[2].style.transform = "none"
+                    }
+                })
+
+                // Close menu when clicking a link
+                mobileMenu.querySelectorAll("a").forEach((link) => {
+                    link.addEventListener("click", () => {
+                        mobileMenu.classList.remove("active")
+                        const spans = mobileMenuBtn.querySelectorAll("span")
+                        spans[0].style.transform = "none"
+                        spans[1].style.opacity = "1"
+                        spans[2].style.transform = "none"
+                    })
+                })
+            }
+
+            // Animated Counter
+            function animateCounter(element, target) {
+                const duration = 2000
+                const start = 0
+                const increment = target / (duration / 16)
+                let current = start
+
+                const timer = setInterval(() => {
+                    current += increment
+                    if (current >= target) {
+                        element.textContent = target.toLocaleString() + "+"
+                        clearInterval(timer)
+                    } else {
+                        element.textContent = Math.floor(current).toLocaleString() + "+"
+                    }
+                }, 16)
+            }
+
+            // Intersection Observer for stats animation
+            const statsObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const statNumbers = entry.target.querySelectorAll(".stat-number[data-target]")
+                            statNumbers.forEach((stat) => {
+                                const target = Number.parseInt(stat.dataset.target)
+                                if (target) {
+                                    animateCounter(stat, target)
+                                }
+                            })
+                            statsObserver.unobserve(entry.target)
+                        }
+                    })
+                },
+                { threshold: 0.5 },
+            )
+
+            const statsSection = document.querySelector(".stats")
+            if (statsSection) {
+                statsObserver.observe(statsSection)
+            }
+
+            // Navbar scroll effect
+            const navbar = document.querySelector(".navbar")
+            let lastScroll = 0
+
+            window.addEventListener("scroll", () => {
+                const currentScroll = window.pageYOffset
+
+                if (currentScroll > 100) {
+                    navbar.style.background = "rgba(10, 10, 15, 0.95)"
+                } else {
+                    navbar.style.background = "rgba(10, 10, 15, 0.8)"
+                }
+
+                lastScroll = currentScroll
+            })
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault()
+                    const target = document.querySelector(this.getAttribute("href"))
+                    if (target) {
+                        const offset = 100
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: "smooth",
+                        })
+                    }
+                })
+            })
+
+            // Card tilt effect
+            const cards = document.querySelectorAll(".team-card")
+
+            cards.forEach((card) => {
+                card.addEventListener("mousemove", (e) => {
+                    const rect = card.getBoundingClientRect()
+                    const x = e.clientX - rect.left
+                    const y = e.clientY - rect.top
+
+                    const centerX = rect.width / 2
+                    const centerY = rect.height / 2
+
+                    const rotateX = (y - centerY) / 20
+                    const rotateY = (centerX - x) / 20
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`
+                })
+
+                card.addEventListener("mouseleave", () => {
+                    card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)"
+                })
+            })
+
+            // Parallax effect on scroll
+            window.addEventListener("scroll", () => {
+                const scrolled = window.pageYOffset
+                const heroGlow = document.querySelector(".hero-glow")
+                const joinGlow = document.querySelector(".join-glow")
+
+                if (heroGlow) {
+                    heroGlow.style.transform = `translate(-50%, -50%) scale(${1 + scrolled * 0.0005})`
+                    heroGlow.style.opacity = Math.max(0.5 - scrolled * 0.001, 0)
+                }
+
+                if (joinGlow) {
+                    const joinSection = document.querySelector(".join")
+                    const joinTop = joinSection.offsetTop
+                    const joinScroll = scrolled - joinTop + window.innerHeight
+
+                    if (joinScroll > 0) {
+                        joinGlow.style.transform = `translateX(-50%) scale(${1 + joinScroll * 0.0002})`
+                    }
+                }
+            })
+
+            // Typing effect for code window
+            const codeContent = document.querySelector(".code-content code")
+            if (codeContent) {
+                const originalContent = codeContent.innerHTML
+                codeContent.innerHTML = ""
+
+                const codeObserver = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                let i = 0
+                                const typeInterval = setInterval(() => {
+                                    if (i < originalContent.length) {
+                                        codeContent.innerHTML = originalContent.substring(0, i + 1)
+                                        i++
+                                    } else {
+                                        clearInterval(typeInterval)
+                                    }
+                                }, 5)
+                                codeObserver.unobserve(entry.target)
+                            }
+                        })
+                    },
+                    { threshold: 0.3 },
+                )
+
+                codeObserver.observe(codeContent.closest(".code-window"))
+            }
+
+            // Add reveal animation to sections
+            const revealObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("revealed")
+                        }
+                    })
+                },
+                { threshold: 0.1 },
+            )
+
+            document.querySelectorAll(".team-category, .about-container, .join-content").forEach((el) => {
+                el.style.opacity = "0"
+                el.style.transform = "translateY(30px)"
+                el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+
+                revealObserver.observe(el)
+            })
+
+            // Add revealed class styles
+            const style = document.createElement("style")
+            style.textContent = `
+        .revealed {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    `
+            document.head.appendChild(style)
+
+            console.log("🚀 Swarve Team Page loaded successfully!")
+        })
+
+    </script>
+</body>
+
+</html>

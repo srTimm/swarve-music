@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/commands", "destination": "/commands.html" },
+    { "source": "/docs", "destination": "/docs.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/embed", "destination": "/embed.html" },
+    { "source": "/panel", "destination": "/panel.html" },
+    { "source": "/team", "destination": "/team.html" }
+  ],
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/commands.html", "destination": "/commands", "permanent": true },
+    { "source": "/docs.html", "destination": "/docs", "permanent": true },
+    { "source": "/terms.html", "destination": "/terms", "permanent": true },
+    { "source": "/privacy.html", "destination": "/privacy", "permanent": true },
+    { "source": "/embed.html", "destination": "/embed", "permanent": true },
+    { "source": "/panel.html", "destination": "/panel", "permanent": true },
+    { "source": "/team.html", "destination": "/team", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    }
+  ]
+}
